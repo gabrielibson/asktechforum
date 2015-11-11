@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+    
+<!--     	<lifecycle> -->
+<!-- 		  <phase-listener>br.ufpe.nti.curriculos.apresentacao.ControleDeAcessoPH</phase-listener> -->
+<!-- 	    </lifecycle> -->
+		
+		
+<!-- 	<navigation-rule> -->
+<!-- 		<from-view-id>/*</from-view-id> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>loginPage</from-outcome> -->
+<!-- 			<to-view-id>/login.jsp</to-view-id> -->
+<!-- 			<redirect/> -->
+<!-- 		</navigation-case> -->
+<!-- 	</navigation-rule> -->
+	
+<!-- 	<navigation-rule> -->
+<!-- 		<from-view-id>/login.jsp</from-view-id> -->
+		
+<!-- 		<navigation-case> -->
+<!-- 			<from-action>#{loginMB.logar}</from-action> -->
+<!-- 			<from-outcome>passou</from-outcome> -->
+<!-- 			<to-view-id>/admin/index</to-view-id> -->
+<!-- 			<redirect>true</redirect> -->
+<!-- 		</navigation-case> -->
+		
+<!-- 		<navigation-case> -->
+<!-- 			<from-action>#{loginMB.esqueceuSenha}</from-action> -->
+<!-- 			<from-outcome>esqueceuSenha</from-outcome> -->
+<!-- 			<to-view-id>/forgotPassword.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 	</navigation-rule> -->
+		
+<!-- 	<application> -->
+<!-- 		<resource-bundle> -->
+<!-- 			<base-name>br.ufpe.nti.curriculos.properties.login_mensagens_erro</base-name> -->
+<!-- 			<var>loginmsg</var> -->
+<!-- 		</resource-bundle> -->
+<!-- 	</application> -->
+
+<!-- 	<application> -->
+<!-- 		<resource-bundle> -->
+<!-- 			<base-name>br.ufpe.nti.curriculos.properties.mensagens</base-name> -->
+<!-- 			<var>msg</var> -->
+<!-- 		</resource-bundle> -->
+		
+<!-- 		<resource-bundle> -->
+<!-- 			<base-name>br.ufpe.nti.curriculos.properties.label</base-name> -->
+<!-- 			<var>label</var> -->
+<!-- 		</resource-bundle> -->
+<!-- 	</application> -->
+	
+<!-- 	<navigation-rule> -->
+<!-- 		<from-view-id>/admin/cadastrar-usuario.xhtml</from-view-id> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-action>#{userBean.cadastrar}</from-action> -->
+<!-- 			<from-outcome>sucesso</from-outcome> -->
+<!-- 			<to-view-id>/admin/tela-sucesso-cadastro.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>erro</from-outcome> -->
+<!-- 			<to-view-id>/admin/tela-erro-cadastro.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 	</navigation-rule> -->
+	
+<!-- 	<navigation-rule> -->
+<!-- 		<from-view-id>/admin/alterarSenha.xhtml</from-view-id> -->
+<!-- 		<navigation-case> -->
+<!-- 			<from-action>#{userBean.alterarSenha}</from-action> -->
+<!-- 			<from-outcome>sucessoAlterarSenha</from-outcome> -->
+<!-- 			<to-view-id>/admin/tela-sucesso-alterarSenha.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 		<navigation-case> -->
+<!-- 		    <from-action>#{userBean.alterarSenha}</from-action> -->
+<!-- 			<from-outcome>erroAlterarSenha</from-outcome> -->
+<!-- 			<to-view-id>/admin/tela-erro-alterarSenha.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
+<!-- 	</navigation-rule> -->
+
+</faces-config>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:0" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="loginPage::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="loginPage" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#index" PATH="/admin/index"
+  SHAPE="272,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#tela-erro-cadastro.xhtml"
+  PATH="/admin/tela-erro-cadastro.xhtml" SHAPE="256,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#tela-sucesso-cadastro.xhtml"
+  PATH="/admin/tela-sucesso-cadastro.xhtml" SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="240,289,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="passou:#{loginMB.logar}:#admin#index"
+    NAME="output" PATH="/admin/index" TARGET="rules:#admin#index"
+    TITLE="#{loginMB.logar}:passou" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="esqueceuSenha:#{loginMB.esqueceuSenha}:#forgotPassword.xhtml"
+    NAME="output1" PATH="/forgotPassword.xhtml"
+    TARGET="rules:#forgotPassword.xhtml"
+    TITLE="#{loginMB.esqueceuSenha}:esqueceuSenha" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#alterarSenha.xhtml"
+  PATH="/admin/alterarSenha.xhtml" SHAPE="32,641,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#alterarSenha.xhtml:0" NAME="item"
+   PATH="/admin/alterarSenha.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="sucessoAlterarSenha:#{userBean.alterarSenha}:#admin#tela-sucesso-alterarSenha.xhtml"
+    NAME="output" PATH="/admin/tela-sucesso-alterarSenha.xhtml"
+    TARGET="rules:#admin#tela-sucesso-alterarSenha.xhtml"
+    TITLE="#{userBean.alterarSenha}:sucessoAlterarSenha" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="erroAlterarSenha:#{userBean.alterarSenha}:#admin#tela-erro-alterarSenha.xhtml"
+    NAME="output1" PATH="/admin/tela-erro-alterarSenha.xhtml"
+    TARGET="rules:#admin#tela-erro-alterarSenha.xhtml"
+    TITLE="#{userBean.alterarSenha}:erroAlterarSenha" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#admin#tela-erro-alterarSenha.xhtml"
+  PATH="/admin/tela-erro-alterarSenha.xhtml" SHAPE="256,801,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#tela-sucesso-alterarSenha.xhtml"
+  PATH="/admin/tela-sucesso-alterarSenha.xhtml" SHAPE="256,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#forgotPassword.xhtml"
+  PATH="/forgotPassword.xhtml" SHAPE="464,273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#cadastrar-usuario.xhtml"
+  PATH="/admin/cadastrar-usuario.xhtml" SHAPE="32,753,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#cadastrar-usuario.xhtml:0" NAME="item"
+   PATH="/admin/cadastrar-usuario.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="sucesso:#{userBean.cadastrar}:#admin#tela-sucesso-cadastro.xhtml"
+    NAME="output" PATH="/admin/tela-sucesso-cadastro.xhtml"
+    TARGET="rules:#admin#tela-sucesso-cadastro.xhtml"
+    TITLE="#{userBean.cadastrar}:sucesso" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="erro::#admin#tela-erro-cadastro.xhtml"
+    NAME="output1" PATH="/admin/tela-erro-cadastro.xhtml"
+    TARGET="rules:#admin#tela-erro-cadastro.xhtml" TITLE="erro" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>
