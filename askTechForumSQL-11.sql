@@ -81,7 +81,7 @@ CREATE INDEX `fk_pergunta_idx` ON `askTechForum`.`RESPOSTA` (`idPergunta` ASC);
 -- -----------------------------------------------------
 -- Table `askTechForum`.`VOTO`
 -- -----------------------------------------------------
-CREATE TABLE `asktechforum`.`VOTO` (
+CREATE TABLE `askTechForum`.`VOTO` (
   `idVoto` INT NOT NULL AUTO_INCREMENT,
   `idUsuario` INT NOT NULL,
   `idResposta` INT NOT NULL,
@@ -107,11 +107,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- ajustes asktechforum.
 
--- Criando o usu·rio admin.
+-- Criando o usu√°rio admin.
 -- insert into usuario (idUsuario,nome,dt_nasc,admin,email,localizacao,senha)
 -- values (1,'Admin',sysdate(),1,'admin@admin.com','BR','admin');
 
 
 -- Criando a pergunta 0;
 -- insert into pergunta(idPergunta,titulo,data,hora,descricao,idUsuario,tag) values
---(1,'pergunta default',sysdate(),curtime(),'Pergunta Padrao do sistema',1,'Geral');
+-- (1,'pergunta default',sysdate(),curtime(),'Pergunta Padrao do sistema',1,'Geral');
