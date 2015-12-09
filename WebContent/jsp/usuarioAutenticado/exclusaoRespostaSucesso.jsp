@@ -1,4 +1,4 @@
-<%@ include file="/cabecalho.jsp" %>
+<%@ include file="/jsp/cabecalho.jsp" %>
 
 <br/><br/><br/>
 <div id="site_content">
@@ -18,4 +18,4 @@
 </div>
 <br/><br/><br/>
 
-<jsp:include page="/rodape.jsp"></jsp:include>
+<jsp:include page="/jsp/rodape.jsp"></jsp:include>
