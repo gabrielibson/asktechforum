@@ -1,4 +1,4 @@
-<%@ include file="/cabecalho.jsp" %>
+<%@ include file="/jsp/cabecalho.jsp" %>
 
 <br/><br/><br/>
 <div id="site_content">
@@ -7,7 +7,7 @@
 		<div class="content_item">
 			<div class="form_settings_perfil">
 				<form action="<%=getServletContext().getContextPath()%>/index.jsp">
-					<h2>Pergunta alterada com sucesso!</h2>
+					<h2>Resposta alterada com sucesso!</h2>
 					<p>
 						<button class="submit" >Voltar</button>
 					</p>
@@ -18,4 +18,4 @@
 </div>
 <br/><br/><br/>
 
-<jsp:include page="/rodape.jsp"></jsp:include>
+<jsp:include page="/jsp/rodape.jsp"></jsp:include>
