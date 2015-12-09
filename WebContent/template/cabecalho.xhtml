@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+	<ui:composition>
+		<div id="main">
+			<div id="header">
+				<div id="logo">
+					<div id="logo_text">
+						<!-- class="logo_colour", allows you to change the colour of the text -->
+						<h1>
+							<a href="/index.xhtml">Ask Tech<span class="logo_colour">Forum</span>
+							</a>
+						</h1>
+
+						<!--   <% Usuario usuarioLogado = new Usuario(); usuarioLogado =
+						(Usuario)session.getAttribute("usuarioLogado"); if(usuarioLogado
+						!= null) { usuarioLogado.setSenha(""); } Boolean saudacao =
+						(Boolean)session.getAttribute("saudacao");
+						session.setAttribute("cabecalho", true); %>  -->
+
+						<!-- <c:if test="${saudacao != true}">
+							<h2>
+								<a href="login.jsp">Entre</a>&nbsp; <a
+									href="cadastroUsuario.jsp">Cadastre-se</a>
+							</h2>
+						</c:if>
+
+						<c:if test="${saudacao == true}">
+							<h2>
+								<span style="color: white">Olá</span> <a
+									onclick="verificarUsuarioPerfil()" style="color: white"
+									href="<%=getServletContext().getContextPath()%>/perfilUsuario.jsp">
+									${usuarioLogado.nome}! </a>&nbsp;&nbsp; <% if(usuarioLogado !=
+								null) { if(usuarioLogado.isAdmin() == true) { %> <a
+									href="<%=getServletContext().getContextPath()%>/cadastroUsuario.jsp">Cadastrar
+									Usuário</a>&nbsp;&nbsp; <% } } %> <a
+									href="<%=getServletContext().getContextPath()%>/ServletAutenticacaoUsuario?logout=true">Sair</a>
+							</h2>
+						</c:if>  -->
+					</div>
+
+					<!-- Parte de pesquisa de pergunta. Será implementado na versão beta -->
+					<!--         <form method="post" action="#" id="search"> -->
+					<!--           <input class="search" type="text" name="search_field" value="search....." onclick="javascript: document.forms['search'].search_field.value=''" /> -->
+					<!--           <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="images/search.png" alt="search" title="search" /> -->
+					<!--         </form> -->
+
+				</div>
+
+				<ul class="sf-menu" id="nav">
+					<li><a
+						href="/ServletConsultarPerguntaPorTag?tag=all">Perguntas</a></li>
+					<li><a
+						href="/pesquisarUsuario.jsp">Usuários</a></li>
+					<li><a href="#">Tags</a>
+						<ul>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=java">Java</a></li>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=android">Android</a></li>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=redes">Redes</a></li>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=javascript">JavaScript</a></li>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=sql">SQL</a></li>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=html">HTML</a></li>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=css">CSS</a></li>
+							<li><a
+								href="/ServletConsultarPerguntaPorTag?tag=allTags">Todas</a></li>
+						</ul></li>
+					<li><a
+						href="/sobre.jsp">Sobre</a></li>
+					<li><a
+						href="/usuarioAutenticado/CadastroPergunta.jsp">Pergunte</a></li>
+				</ul>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>

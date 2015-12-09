@@ -5,14 +5,17 @@
       xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 <title><ui:insert name="title">Ask Tech Forum</ui:insert></title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
 </h:head>
 
 <h:body>
-<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+<!-- <ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/> -->
 
 <div id="header">
     <ui:insert name="header">
-    	<ui:include src="/main/cabecalho.xhtml"></ui:include>
+    	<ui:include src="/template/cabecalho.xhtml"></ui:include>
     </ui:insert>
 </div>
 
@@ -29,11 +32,7 @@
 
 <div id="footer">
   <ui:insert name="footer">
-    	Footer area.  See comments below this line in the source.
-    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
-	  	<!-- <div> -->
-    	<!-- <ui:include src="content.xhtml"/> -->  
-    	<!-- </div> -->
+    	<ui:include src="/template/rodape.xhtml"></ui:include>
   </ui:insert>
 </div>
 

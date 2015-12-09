@@ -12,7 +12,7 @@ html {
   padding: 0;}
 
 /* tell the browser to render HTML 5 elements as block */
-article, aside, figure, footer, header, hgroup, nav, section { 
+article, aside, figure, .footer, header, hgroup, nav, section { 
   display:block;}
 
 body { 
@@ -154,7 +154,7 @@ ol li {
   margin: 20px auto;
 }
 
-#main, #logo, nav, #site_content, footer { 
+#main, #logo, nav, #site_content, .footer { 
   margin-left: auto; 
   margin-right: auto;
 }
@@ -294,7 +294,7 @@ ol li {
   line-height: 1.5em;
 }
 
-footer { 
+.footer { 
   width: 100%;
   font-family: 'trebuchet ms', sans-serif;
   font-size: 90%;
@@ -308,17 +308,17 @@ footer {
   text-transform: uppercase;
 }
 
-footer p { 
+.footer p { 
   line-height: 1.7em;
   padding: 0 0 10px 0;
 }
 
-footer a { 
+.footer a { 
   color: #A8AA94;
   text-decoration: none;
 }
 
-footer a:hover { 
+.footer a:hover { 
   color: #FFF;
   text-decoration: none;
 }
