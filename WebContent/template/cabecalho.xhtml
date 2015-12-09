@@ -6,19 +6,26 @@
 
 <body>
 	<ui:composition>
+	<h:form>
 		<div id="main">
 			<div id="header">
 				<div id="logo">
 					<div id="logo_text">
 						<!-- class="logo_colour", allows you to change the colour of the text -->
-						<h1>
-							<a href="/index.xhtml">Ask Tech<span class="logo_colour">Forum</span>
-							</a>
-						</h1>
-						<h2>
-							<a href="login.jsp">Entre</a>&nbsp; 
-							<a href="cadastroUsuario.jsp">Cadastre-se</a>
-						</h2>
+						
+							<h1>
+								<h:commandLink value="Ask Tech" action="/index" >
+									<h:panelGroup styleClass="logo_colour" >Forum</h:panelGroup>
+								</h:commandLink>
+							</h1>
+						
+							<h2>
+								<h:commandLink value="Entre" action="jsf/login" />
+								&nbsp;
+								<h:commandLink value="Cadastre-se" action="jsf/cadastroUsuario" />
+							</h2>
+						
+						
 
 						<!--   <% Usuario usuarioLogado = new Usuario(); usuarioLogado =
 						(Usuario)session.getAttribute("usuarioLogado"); if(usuarioLogado
@@ -86,6 +93,7 @@
 				</ul>
 			</div>
 		</div>
+		</h:form>
 	</ui:composition>
 </body>
 </html>
