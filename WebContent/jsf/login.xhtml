@@ -11,7 +11,7 @@
 <body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<h:form method="post" action="ServletAutenticacaoUsuario" id="formLogin">
+			<h:form id="formLogin" prependId="false">
 				<div id="site_content">
 					<div class="content">
 						<h1>Login</h1>
@@ -19,20 +19,19 @@
 							<div class="form_settings_login">
 								<p>
 									<h:outputLabel>E-mail </h:outputLabel>
-									<h:inputText styleClass="contact" name="email" value="" label="=nome@exemplo.com"/>
+									<h:inputText styleClass="contact" id="email" value="#{loginMB.login }" label="=nome@exemplo.com"/>
 								</p>
 								<p>
 									<h:outputLabel>Senha</h:outputLabel>
-									<h:inputSecret styleClass="contact" name="senha" label="senha" /> 
+									<h:inputSecret styleClass="contact" id="senha" label="senha" value="#{loginMB.senha }"/> 
 									<h:outputLink target="esqueciMinhaSenha.jsp" style="font-size: 10px">Esqueci	minha senha</h:outputLink>
+									<h:message for="senha" style="font-size: 12px; color: red;"></h:message>
 								</p>
 
 								<p style="padding-top: 15px">
-									<span>&nbsp;</span><input class="submit" type="submit"
-										name="btn_entrar" value="Entrar" /> 
-										<a href="cadastroUsuario.jsp">
-											<h:commandButton styleClass="submit" name="btn_cadastrar" type="button" value="Cadastrar" />
-										</a>
+									<h:commandButton styleClass="submit" name="btn_entrar" value="Entrar" action="#{loginMB.logar }"/> 
+									<h:commandButton styleClass="submit" name="btn_cadastrar" value="Cadastrar" />
+									
 								</p>
 							</div>
 						</div>

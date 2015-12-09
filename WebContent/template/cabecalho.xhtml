@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <body>
 	<ui:composition>
@@ -20,9 +21,15 @@
 							</h1>
 						
 							<h2>
-								<h:commandLink value="Entre" action="loginPage" />
+								<h:commandLink value="Entre" action="loginPage" rendered="#{loginMB.usuarioLogado == null }"/>
 								&nbsp;
-								<h:commandLink value="Cadastre-se" action="cadastroUsuarioPage" />
+								<h:commandLink value="Cadastre-se" action="cadastroUsuarioPage" rendered="#{loginMB.usuarioLogado == null }"/>
+								
+								<h:panelGroup rendered="#{loginMB.usuarioLogado != null }"> 
+									<h:outputText value="Olá #{loginMB.usuarioLogado.nome }"/>
+									&nbsp;
+									<h:commandLink value="Sair" action="#{loginMB.sair }"/>
+								</h:panelGroup>
 							</h2>
 						
 						

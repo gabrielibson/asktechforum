@@ -28,7 +28,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("update usuario set nome=?,dt_nasc=?,admin=?,email=?,localizacao=?,senha=? where idUsuario=?");
+                    .prepareStatement("update Usuario set nome=?,dt_nasc=?,admin=?,email=?,localizacao=?,senha=? where idUsuario=?");
 
             preparedStatement.setString(1, usuario.getNome());
             preparedStatement.setDate(2, usuario.getDataNascimento());
@@ -54,7 +54,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("update usuario set admin=? where idUsuario=?");
+                    .prepareStatement("update Usuario set admin=? where idUsuario=?");
 
             preparedStatement.setBoolean(1, usuario.isAdmin());
             preparedStatement.setInt(2, usuario.getIdUsuario());
@@ -75,7 +75,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("insert into usuario(nome,dt_nasc,email,localizacao,senha,admin) values ( ?, ?, ?, ?, ?, ? )");
+                    .prepareStatement("insert into Usuario(nome,dt_nasc,email,localizacao,senha,admin) values ( ?, ?, ?, ?, ?, ? )");
             
             preparedStatement.setString(1, usuario.getNome());
             preparedStatement.setDate(2, usuario.getDataNascimento());
@@ -100,7 +100,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("delete from usuario where email=?");
+                    .prepareStatement("delete from Usuario where email=?");
             
             preparedStatement.setString(1, email);
             preparedStatement.executeUpdate();
@@ -119,7 +119,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("delete from usuario where idUsuario=?");
+                    .prepareStatement("delete from Usuario where idUsuario=?");
             
             preparedStatement.setInt(1, idUsuario);
             preparedStatement.executeUpdate();
@@ -141,7 +141,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
 			preparedStatement = con
-					.prepareStatement("select * from usuario where email=? and senha=?");
+					.prepareStatement("select * from Usuario where email=? and senha=?");
 			preparedStatement.setString(1,email);
 			preparedStatement.setString(2,senha);
 			rs = preparedStatement.executeQuery();
@@ -176,7 +176,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
 			preparedStatement = con
-					.prepareStatement("select * from usuario where idUsuario=?");
+					.prepareStatement("select * from Usuario where idUsuario=?");
 			
 			preparedStatement.setInt(1, idUsuario);
 			rs = preparedStatement.executeQuery();
@@ -210,7 +210,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
 			preparedStatement = con
-					.prepareStatement("select * from usuario where email=?");
+					.prepareStatement("select * from Usuario where email=?");
 			
 			preparedStatement.setString(1, email);
 			rs = preparedStatement.executeQuery();
@@ -244,7 +244,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
 			preparedStatement = con
-					.prepareStatement("select * from usuario where nome=?");
+					.prepareStatement("select * from Usuario where nome=?");
 			
 			preparedStatement.setString(1, nome);
 			rs = preparedStatement.executeQuery();
@@ -280,7 +280,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
         
         try {
             statement = con.createStatement();
-            rs = statement.executeQuery("select * from usuario;");
+            rs = statement.executeQuery("select * from Usuario;");
             
             while(rs.next()) {
             	Usuario usuario = new Usuario();

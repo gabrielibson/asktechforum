@@ -22,7 +22,24 @@
     		<to-view-id>jsf/cadastroUsuario.xhtml</to-view-id>
     		<redirect/>
     	</navigation-case>
+    	<navigation-case>
+			<from-outcome>passou</from-outcome>
+			<to-view-id>jsf/admin/home.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
     </navigation-rule>
+    
+<!--     <navigation-rule>
+		<from-view-id>jsf/login.jsf</from-view-id>
+		
+		
+		<navigation-case>
+			<from-action>#{loginMB.esqueceuSenha}</from-action>
+			<from-outcome>esqueceuSenha</from-outcome>
+			<to-view-id>/forgotPassword.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule> -->
+	
 <!--     	<lifecycle> -->
 <!-- 		  <phase-listener>br.ufpe.nti.curriculos.apresentacao.ControleDeAcessoPH</phase-listener> -->
 <!-- 	    </lifecycle> -->
@@ -37,22 +54,7 @@
 <!-- 		</navigation-case> -->
 <!-- 	</navigation-rule> -->
 	
-<!-- 	<navigation-rule> -->
-<!-- 		<from-view-id>/login.jsp</from-view-id> -->
-		
-<!-- 		<navigation-case> -->
-<!-- 			<from-action>#{loginMB.logar}</from-action> -->
-<!-- 			<from-outcome>passou</from-outcome> -->
-<!-- 			<to-view-id>/admin/index</to-view-id> -->
-<!-- 			<redirect>true</redirect> -->
-<!-- 		</navigation-case> -->
-		
-<!-- 		<navigation-case> -->
-<!-- 			<from-action>#{loginMB.esqueceuSenha}</from-action> -->
-<!-- 			<from-outcome>esqueceuSenha</from-outcome> -->
-<!-- 			<to-view-id>/forgotPassword.xhtml</to-view-id> -->
-<!-- 		</navigation-case> -->
-<!-- 	</navigation-rule> -->
+	
 		
 <!-- 	<application> -->
 <!-- 		<resource-bundle> -->
