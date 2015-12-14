@@ -40,6 +40,9 @@ public class LoginBean {
 			}
 			else{
 				this.usuarioLogado = user;
+				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().
+						getExternalContext().getSession(true);
+				session.setAttribute("usuarioLogado", this.usuarioLogado);
 				retorno = "passou";
 			}
 		}		

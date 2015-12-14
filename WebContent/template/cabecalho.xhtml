@@ -70,8 +70,8 @@
 				</div>
 
 				<ul class="sf-menu" id="nav">
-					<li><a
-						href="/ServletConsultarPerguntaPorTag?tag=all">Perguntas</a></li>
+					<li>
+						<h:commandLink value="Perguntas" action="/jsf/consultaPerguntasPorTag"></h:commandLink></li>
 					<li><a
 						href="/pesquisarUsuario.jsp">Usuários</a></li>
 					<li><a href="#">Tags</a>
@@ -96,8 +96,6 @@
 					<li><a
 						href="/sobre.jsp">Sobre</a></li>
 					<li>
-					 <!-- <a
-						href="/jsf/admin/cadastroPergunta.jsf">Pergunte</a> -->
 						<h:commandLink value="Pergunte" action="cadastroPergunta"></h:commandLink>
 					</li>	
 				</ul>

@@ -14,32 +14,47 @@
 			<h:form prependId="false">
 				<div id="site_content">
 					<div class="content">
-						<h1>Faça a sua pergunta</h1>
-						<div class="content_item">
-							<div style="height: 500px; width: 300px;"
-								class="form_settings_cadastro">
-								<p>
-									<h:panelGroup>Pergunta*</h:panelGroup>
-									<h:inputText styleClass="contact" value="#{perguntaBean.pergunta.titulo}" id="titulo"/>
-								</p>
-								<p>
-									<h:panelGroup>Descrição*</h:panelGroup>
-									<h:inputTextarea rows="8" cols="20" 
-										styleClass="contact" value="#{perguntaBean.pergunta.descricao}" id="descricao"/>
-								</p>
-								<p>
-									<h:panelGroup>Assuntos relacionados*</h:panelGroup>
-									<h:inputText styleClass="contact" value="#{perguntaBean.pergunta.tag}" id="tag"/>
-									<h:panelGroup style="color: rgb(10, 122, 146); font-size: 12px;">
+						<h:panelGroup id="panelCadastro" rendered="#{!perguntaBean.perguntaCadastrada }">
+							<h1>Faça a sua pergunta</h1>
+							<div class="content_item">
+								<div style="height: 500px; width: 300px;"
+									class="form_settings_cadastro">
+									<p>
+										<h:panelGroup>Pergunta*</h:panelGroup>
+										<h:inputText styleClass="contact"
+											value="#{perguntaBean.pergunta.titulo}" id="titulo" />
+									</p>
+									<p>
+										<h:panelGroup>Descrição*</h:panelGroup>
+										<h:inputTextarea rows="8" cols="20" styleClass="contact"
+											value="#{perguntaBean.pergunta.descricao}" id="descricao" />
+									</p>
+									<p>
+										<h:panelGroup>Assuntos relacionados*</h:panelGroup>
+										<h:inputText styleClass="contact"
+											value="#{perguntaBean.pergunta.tag}" id="tag" />
+										<h:panelGroup
+											style="color: rgb(10, 122, 146); font-size: 12px;">
 										Separe as Tags por apenas um espaço em branco
 									</h:panelGroup>
-								</p>
-								<p style="color: red; font-size: 12px;">
-									Os campos com * são	obrigatórios.
-									<h:commandButton styleClass="submit" action="#{perguntaBean.inserirPergunta}"/>
-								</p> 
+									</p>
+									<p style="color: red; font-size: 12px;">Os campos com * são
+										obrigatórios.</p>
+									<h:messages style="color: red" />
+									<h:commandButton styleClass="submit"
+										action="#{perguntaBean.inserirPergunta}" value="Cadastrar" />
+								</div>
 							</div>
-						</div>
+						</h:panelGroup>
+
+						<h:panelGroup id="panelMsgs" rendered="#{perguntaBean.perguntaCadastrada }">
+							<div style="width: 700px;" class="form_settings_cadastro">
+								<h2>Pergunta cadastrada com sucesso!</h2>
+								<p>
+									<h:commandButton styleClass="submit" value="Voltar" action="#{perguntaBean.cadastrarPergunta }"/>
+								</p>
+							</div>
+						</h:panelGroup>
 					</div>
 				</div>
 			</h:form>

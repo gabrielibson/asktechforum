@@ -8,7 +8,46 @@
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			
+			<h:form id="formConsultarPerguntasPorTodasTags" prependId="false">
+				<div id="site_content">
+					<h:dataTable value="#{perguntaBean.listPerguntas }" var="pergunta">
+						<div class="content">
+							<h1>
+								<h:commandLink value="#{pergunta.titulo }" action="#{respostaBean.consultarRepostasPergunta }">
+									<f:setPropertyActionListener value="#{pergunta.idPergunta }" target="#{respostaBean.idPergunta }" />
+								</h:commandLink>
+							</h1>
+							<div class="content_item">
+								<div style="width: 900px;" class="form_settings_cadastro">
+									<p><h:outputText value="#{pergunta.descricao }"/></p>
+									<h:dataTable value="#{pergunta.listTags }" var="tag">
+										<h:commandLink value="#{tag}" action="#{perguntaBean.consultarPerguntaPorTag }">
+											<f:setPropertyActionListener value="#{tag }" target="#{perguntaBean.tag }" />
+										</h:commandLink>
+									</h:dataTable>
+									<br />
+							    	<br />
+							    	<h:outputText style="font-size: 11px; position: right;" value="Por: #{pergunta.autor }"/>
+							    	<p>
+							    		<h:outputText style="font-size: 9px; position: right;" value="Em: #{pergunta.data }"/>
+							    		<h:outputText style="font-size: 9px; position: right;" value="às #{pergunta.hora }"/>
+							    	</p>
+								</div>
+							</div>
+						</div>
+					</h:dataTable>
+					<h:panelGroup id="panelSemPerguntas" rendered="false">
+						<div class="content_item">
+							<div class="content">
+								<h1>Ops...</h1>
+								<div style="width: 700px;" class="form_settings_cadastro">
+									<h2>Ainda não há perguntas cadastradas no Ask TechForum.</h2>
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+				</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

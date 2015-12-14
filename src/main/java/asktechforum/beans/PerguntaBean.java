@@ -1,39 +1,69 @@
 package asktechforum.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import asktechforum.dominio.Pergunta;
+import asktechforum.dominio.ResultConsultarPergunta;
+import asktechforum.dominio.Usuario;
 import asktechforum.fachada.Fachada;
+import asktechforum.util.Util;
 
 @ManagedBean(name="perguntaBean")
+@SessionScoped
 public class PerguntaBean {
-	Fachada fachada = Fachada.getInstance();
-	Pergunta pergunta;
+	private Fachada fachada = Fachada.getInstance();
+	private Pergunta pergunta;
+	private boolean perguntaCadastrada;
+	private List<ResultConsultarPergunta> listPerguntas;
+	private String tag;
 
 	public PerguntaBean(){
+		this.listPerguntas = new ArrayList<ResultConsultarPergunta>();
 		this.pergunta = new Pergunta();
+		this.listarTodasPerguntas();
 	}
 	
 	public String inserirPergunta(){
-		String retornoCadastroPergunta = fachada
-				.fachadaAdcionarPergunta(pergunta);
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		this.pergunta.setStrData(Util.getDataSistema());
+		this.pergunta.setStrHora(Util.getHoraSistema());
+		this.pergunta.setIdUsuario(usuario.getIdUsuario());
+		String retornoCadastroPergunta = this.fachada.fachadaAdcionarPergunta(pergunta);
 
 		if (retornoCadastroPergunta != null
 				&& !retornoCadastroPergunta.equals("cadastroSucesso")) {
-/*			session.setAttribute("erroCadastroPergunta",
-					retornoCadastroPergunta);
-			request.setAttribute("pergunta", pergunta);
-			request.getRequestDispatcher(
-					"usuarioAutenticado/CadastroPergunta.jsp").forward(
-					request, response);
-*/		} else {
-		/*	RequestDispatcher view = request
-					.getRequestDispatcher(SUCESSOCADASTRO);
-			request.setAttribute("pergunta", pergunta);
-			view.forward(request, response);*/
+			this.perguntaCadastrada = false;
+		} else {
+			this.perguntaCadastrada = true;
 		}
 
+		return "cadastroPergunta";
+	}
+	
+	public String consultarPerguntaPorTag(){
 		return "";
+	}
+	
+	public String listarTodasPerguntas(){
+		this.listPerguntas = fachada.fachadaConsultarPerguntaPorTag("all");
+		return "/jsf/consultaPerguntasPorTag";
+	}
+	
+	public String cadastrarPergunta(){
+		this.limpar();
+		return "cadastroPergunta";
+	}
+	
+	public void limpar(){
+		this.perguntaCadastrada = false;
+		this.pergunta = new Pergunta();
 	}
 	
 	public Pergunta getPergunta() {
@@ -42,6 +72,30 @@ public class PerguntaBean {
 
 	public void setPergunta(Pergunta pergunta) {
 		this.pergunta = pergunta;
+	}
+
+	public boolean isPerguntaCadastrada() {
+		return perguntaCadastrada;
+	}
+
+	public void setPerguntaCadastrada(boolean perguntaCadastrada) {
+		this.perguntaCadastrada = perguntaCadastrada;
+	}
+
+	public List<ResultConsultarPergunta> getListPerguntas() {
+		return listPerguntas;
+	}
+
+	public void setListPerguntas(List<ResultConsultarPergunta> listPerguntas) {
+		this.listPerguntas = listPerguntas;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	
 	
