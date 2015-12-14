@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html" 
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="formRecuperarSenha" prependId="false">
+				<div id="site_content">
+					<h:panelGroup id="panelEsqueciSenha"
+						rendered="#{!loginMB.emailEnviado}">
+						<div class="content">
+							<h1>Esqueceu sua Senha?</h1>
+							<div class="content_item">
+								<div style="width: 700px;" class="form_settings_cadastro">
+									<h2>Insira abaixo seu e-mail cadastrado, para que o Ask
+										TechForum encaminhe sua senha:</h2>
+									<p>
+										<h:panelGroup value="E-mail" />
+										<h:inputText id="email" value="#{loginMB.login}" />
+										<h:messages globalOnly="true" style="font-size: 12px; color: red;"></h:messages>								
+									</p>
+									<p style="padding-top: 15px">
+										<h:commandButton styleClass="submit" value="Enviar"
+											action="#{loginMB.enviarEmailSenha}" />
+									</p>
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+					<h:panelGroup id="panelSucessoEmail"
+						rendered="#{loginMB.emailEnviado}">
+						<div class="content">
+							<h1>Email enviado com sucesso!</h1>
+							<div class="content_item">
+								<div style="width: 700px;" class="form_settings_cadastro">
+									<h2>Consulte sua caixa de entrada (ou caixa de spam),
+										recupere seus dados e realize o seu login!</h2>
+									<p>
+										<h:commandButton styleClass="submit" value="Voltar"
+											action="loginPage" />
+									</p>
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<h:form prependId="false">
+				<div id="site_content">
+					<div class="content">
+						<h1>Faça a sua pergunta</h1>
+						<div class="content_item">
+							<div style="height: 500px; width: 300px;"
+								class="form_settings_cadastro">
+								<p>
+									<h:panelGroup>Pergunta*</h:panelGroup>
+									<h:inputText styleClass="contact" value="#{perguntaBean.pergunta.titulo}" id="titulo"/>
+								</p>
+								<p>
+									<h:panelGroup>Descrição*</h:panelGroup>
+									<h:inputTextarea rows="8" cols="20" 
+										styleClass="contact" value="#{perguntaBean.pergunta.descricao}" id="descricao"/>
+								</p>
+								<p>
+									<h:panelGroup>Assuntos relacionados*</h:panelGroup>
+									<h:inputText styleClass="contact" value="#{perguntaBean.pergunta.tag}" id="tag"/>
+									<h:panelGroup style="color: rgb(10, 122, 146); font-size: 12px;">
+										Separe as Tags por apenas um espaço em branco
+									</h:panelGroup>
+								</p>
+								<p style="color: red; font-size: 12px;">
+									Os campos com * são	obrigatórios.
+									<h:commandButton styleClass="submit" action="#{perguntaBean.inserirPergunta}"/>
+								</p> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -11,58 +11,66 @@
 <body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<h:form>
+			<h:form prependId="false">
 				<div id="site_content">
 					<div class="content">
 						<h1>Cadastro</h1>
-						<div class="content_item">
+						<h:panelGroup layout="block" styleClass="content_item" rendered="#{!userBean.cadastrado}">
 							<div style="width: 700px;" class="form_settings_cadastro">
 								<p>
-									<span>Nome* </span> <br /> <input class="contact"
-										value="${usuario.nome}" type="text" name="nome" id="nome" />
+									<h:panelGroup>Nome* </h:panelGroup> <br /> 
+									<h:inputText class="contact" value="#{userBean.usuario.nome}" id="nome" />
 								</p>
 								<p>
-									<span>Data de Nascimento </span> <br /> <input class="contact"
-										type="text" value="${usuario.dataString}"
-										name="dataNascimento" id="dataNascimento"
-										placeholder="dd/mm/aaaa" />
+									<h:panelGroup>Data de Nascimento </h:panelGroup> <br /> 
+									<h:inputText class="contact" value="#{userBean.dataNascimentoStr}" id="dataNascimento" />
 								</p>
 								<p>
-									<span>E-mail* </span> <br /> <input class="contact"
-										value="${usuario.email}" type="email" name="email" id="email"
-										placeholder="nome@exemplo.com" />
+									<h:panelGroup>Email* </h:panelGroup> <br /> 
+									<h:inputText class="contact" value="#{userBean.usuario.email}" id="email" />
 								</p>
 								<p>
-									<span>Localização </span> <br /> <input class="contact"
-										value="${usuario.localizacao}" type="text" name="localizacao"
-										id="localizacao" placeholder="Cidade/Estado" />
+									<h:panelGroup>Localização </h:panelGroup> <br /> 
+									<h:inputText class="contact" value="#{userBean.usuario.localizacao}" id="localizacao" />
 								</p>
 								<p>
-									<span>Senha* </span> <br /> <input class="contact"
-										value="${usuario.senha}" type="password" name="senha"
-										id="senha" placeholder="Senha" /> <span
+									<h:panelGroup>Senha* </h:panelGroup> <br /> 
+									<h:inputSecret maxlength="8" class="contact" value="#{userBean.usuario.senha}" id="senha" />
+									<span
 										style="color: rgb(10, 122, 146); font-size: 12px;">O
-										campo 'Senha' deve conter no máximo 8 caracteres</span>
+										campo 'Senha' deve conter no máximo 8 caracteres</span> 
 								</p>
 								<p>
-									<span>Confirmar Senha* </span> <br /> <input class="contact"
-										value="${usuario.confSenha}" type="password" name="confsenha"
-										id="confsenha" placeholder="Repetir Senha" /> <span
+									<h:panelGroup>Confirmar Senha* </h:panelGroup> <br /> 
+									<h:inputSecret maxlength="8" class="contact" value="#{userBean.usuario.confSenha}" id="confsenha" />
+									 <span
 										style="color: rgb(10, 122, 146); font-size: 12px;">Os
 										campos 'Senha' e 'Confirmar Senha' devem ser iguais</span>
 								</p>
 								<br />
 								<p style="color: red; font-size: 12px;">Os campos com * são
-									obrigatórios, preencha-os com dados válidos</p>
+									obrigatórios, preencha-os com dados válidos
+									
+									<h:messages style="color: red"/>	
+								</p>
 
-								<input class="submit" value="Cadastrar" type="submit" /> <input
-									class="submit" value="Voltar" type="button" onclick="voltar()" />
+								<h:commandButton styleClass="submit" value="Cadastrar" action="#{userBean.cadastrarUsuario}"/>
+								&nbsp;
+								<h:commandButton styleClass="submit" value="Voltar" action="indexPage"/>
 								<br /> <br /> <br />
+							</div>	
+						</h:panelGroup>
+						
+						<h:panelGroup layout="block" styleClass="content_item" rendered="#{userBean.cadastrado}">
+							<div style="width: 700px;" class="form_settings_cadastro">
+								<h2>Usuário cadastrado com sucesso!</h2>
+								<p>
+									Faça seu login <h:commandLink action="loginPage" value="Aqui"/>
+								</p>
 							</div>
-						</div>
+						</h:panelGroup>
 					</div>
 				</div>
-
 			</h:form>
 		</ui:define>
 	</ui:composition>

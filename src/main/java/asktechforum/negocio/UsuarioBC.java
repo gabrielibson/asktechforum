@@ -155,7 +155,7 @@ public class UsuarioBC {
 	}
 
 	public Usuario consultarUsuarioPorEmail(String email) {
-		Usuario usuario = new Usuario();
+		Usuario usuario = null;
 		try {
 			usuario = this.usuarioDAO.consultarUsuarioPorEmail(email);
 		} catch (SQLException e) {

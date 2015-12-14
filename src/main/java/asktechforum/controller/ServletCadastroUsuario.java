@@ -17,8 +17,8 @@ import asktechforum.fachada.Fachada;
  */
 public class ServletCadastroUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static String SUCESSOCADASTRO = "cadastroUsuarioSucesso.jsp";
-    private static String ERROCADASTRO = "cadastroUsuario.jsp";
+    private static String SUCESSOCADASTRO = "jsp/cadastroUsuarioSucesso.jsp";
+    private static String ERROCADASTRO = "jsp/cadastroUsuario.jsp";
 	
     //private UsuarioBC usuarioBC;
        
