@@ -59,6 +59,16 @@ public class UsuarioBean implements Serializable{
 		}
 	}
 	
+	public String chamarCadastroUsuario(){
+		limpar();
+		return "cadastroUsuarioPage";
+	}
+	
+	public void limpar(){
+		this.usuario = new Usuario();
+		this.cadastrado = false;
+	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
