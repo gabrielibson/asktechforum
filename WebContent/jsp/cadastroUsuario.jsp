@@ -4,7 +4,7 @@
 <br />
 <br />
 
-<form id="formCadastroUsuario" action="ServletCadastroUsuario" method="post">
+<form id="formCadastroUsuario" action="<%=getServletContext().getContextPath()%>/ServletCadastroUsuario" method="post">
 
 	<div id="site_content">
 		<div class="content">
