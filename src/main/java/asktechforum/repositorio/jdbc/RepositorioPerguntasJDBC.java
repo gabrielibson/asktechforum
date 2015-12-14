@@ -128,7 +128,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 	public ArrayList<Pergunta> consultarTodasPerguntas() throws SQLException {
 		ArrayList<Pergunta> pergunta = new ArrayList<Pergunta>();
 
-		String sql = "select * from PERGUNTA order by data, hora";
+		String sql = "select * from pergunta order by data, hora";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Connection con = this.conexaoUtil.getConnection();
@@ -287,7 +287,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 		ArrayList<ResultConsultarPergunta> pergunta = new ArrayList<ResultConsultarPergunta>();
 		
 		String sql = "SELECT p.descricao, COUNT( r.idResposta ) total, u.nome, p.idPergunta, p.titulo, p.tag, p.data, p.hora, p.idUsuario" +
-		" FROM Usuario u LEFT JOIN PERGUNTA p ON u.idUsuario = p.idUsuario 	LEFT JOIN RESPOSTA r ON p.idPergunta = r.idPergunta " +
+		" FROM usuario u LEFT JOIN pergunta p ON u.idUsuario = p.idUsuario 	LEFT JOIN resposta r ON p.idPergunta = r.idPergunta " +
 		" GROUP BY u.nome, p.idPergunta	ORDER BY p.data DESC , p.hora DESC LIMIT 0 , 15 ";
 		
 		PreparedStatement stmt = null;
