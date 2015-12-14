@@ -71,29 +71,42 @@
 
 				<ul class="sf-menu" id="nav">
 					<li>
-						<h:commandLink value="Perguntas" action="/jsf/consultaPerguntasPorTag"></h:commandLink></li>
-					<li><a
-						href="/pesquisarUsuario.jsp">Usuários</a></li>
-					<li><a href="#">Tags</a>
+						<h:commandLink value="Perguntas" action="#{perguntaBean.listarTodasPerguntas }"></h:commandLink>
+					</li>
+					<li>
+						<h:commandLink value="Usuários" action="/jsf/acessoNegado"></h:commandLink>
+					</li>
+					<li> 
+						<a href="#">Tags</a>
 						<ul>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=java">Java</a></li>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=android">Android</a></li>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=redes">Redes</a></li>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=javascript">JavaScript</a></li>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=sql">SQL</a></li>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=html">HTML</a></li>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=css">CSS</a></li>
-							<li><a
-								href="/ServletConsultarPerguntaPorTag?tag=allTags">Todas</a></li>
-						</ul></li>
-					<li><a
+							<li>
+								<h:commandLink value="Java" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+							<li>
+								<h:commandLink value="Android" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+							<li>
+								<h:commandLink value="Redes" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+							<li>
+								<h:commandLink value="JavaScript" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+							<li>
+								<h:commandLink value="SQL" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+							<li>
+								<h:commandLink value="HTML" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+							<li>
+								<h:commandLink value="CSS" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+							<li>
+								<h:commandLink value="Todas" action="/jsf/acessoNegado"></h:commandLink>
+							</li>
+						</ul>
+					</li>
+					<li>
+					<a
 						href="/sobre.jsp">Sobre</a></li>
 					<li>
 						<h:commandLink value="Pergunte" action="cadastroPergunta"></h:commandLink>
