@@ -205,7 +205,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 	public Usuario consultarUsuarioPorEmail(String email) throws SQLException {
 		PreparedStatement preparedStatement = null;
 		ResultSet rs = null;
-		Usuario usuario = new Usuario();
+		Usuario usuario = null;
 		Connection con = this.conexaoUtil. getConnection();
 		
 		try {
@@ -216,6 +216,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 			rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
+				usuario = new Usuario();
 				usuario.setIdUsuario(rs.getInt("idUsuario"));
 				usuario.setNome(rs.getString("nome"));
 				usuario.setDataNascimento(rs.getDate("dt_nasc"));

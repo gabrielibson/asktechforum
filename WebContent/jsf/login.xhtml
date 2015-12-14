@@ -20,15 +20,17 @@
 								<p>
 									<h:outputLabel>E-mail </h:outputLabel>
 									<h:inputText styleClass="contact" id="email" value="#{loginMB.login }" label="=nome@exemplo.com"/>
+									<h:message for="email" style="font-size: 12px; color: red;"></h:message>
 								</p>
 								<p>
 									<h:outputLabel>Senha</h:outputLabel>
 									<h:inputSecret styleClass="contact" id="senha" label="senha" value="#{loginMB.senha }"/> 
-									<h:outputLink target="esqueciMinhaSenha.jsp" style="font-size: 10px">Esqueci	minha senha</h:outputLink>
 									<h:message for="senha" style="font-size: 12px; color: red;"></h:message>
+									<br />
+									<h:outputLink target="esqueciMinhaSenha.jsp" style="font-size: 10px">Esqueci	minha senha</h:outputLink>
 								</p>
 
-								<p style="padding-top: 15px">
+								<p>
 									<h:commandButton styleClass="submit" name="btn_entrar" value="Entrar" action="#{loginMB.logar }"/> 
 									<h:commandButton styleClass="submit" name="btn_cadastrar" value="Cadastrar" />
 									
