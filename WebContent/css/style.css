@@ -211,7 +211,6 @@ ol li {
 #nav { 
   width: 1000px;
   height: 46px;
-  left: 135px;
 } 
 
 #site_content { 
@@ -601,7 +600,8 @@ ul ul span.sf-arrow {
 
 /* Theming the menu */
 ul#nav {
-  float: left;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ul#nav li.current a {

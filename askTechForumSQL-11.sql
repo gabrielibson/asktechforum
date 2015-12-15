@@ -9,9 +9,9 @@ USE `askTechForum` ;
 -- -----------------------------------------------------
 -- Table `askTechForum`.`USUARIO`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `askTechForum`.`Usuario` ;
+DROP TABLE IF EXISTS `askTechForum`.`usuario` ;
 
-CREATE TABLE IF NOT EXISTS `askTechForum`.`Usuario` (
+CREATE TABLE IF NOT EXISTS `askTechForum`.`usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(150) NOT NULL,
   `dt_nasc` DATE NULL,
@@ -26,9 +26,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `askTechForum`.`PERGUNTA`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `askTechForum`.`PERGUNTA` ;
+DROP TABLE IF EXISTS `askTechForum`.`pergunta` ;
 
-CREATE TABLE IF NOT EXISTS `askTechForum`.`PERGUNTA` (
+CREATE TABLE IF NOT EXISTS `askTechForum`.`pergunta` (
   `idPergunta` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(150) NOT NULL,
   `data` DATE NOT NULL,
@@ -39,20 +39,20 @@ CREATE TABLE IF NOT EXISTS `askTechForum`.`PERGUNTA` (
   PRIMARY KEY (`idPergunta`),
   CONSTRAINT `fk_usuario_pergunta`
     FOREIGN KEY (`idUsuario`)
-    REFERENCES `askTechForum`.`Usuario` (`idUsuario`)
+    REFERENCES `askTechForum`.`usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `ser_idx` ON `askTechForum`.`PERGUNTA` (`idUsuario` ASC);
+CREATE INDEX `ser_idx` ON `askTechForum`.`pergunta` (`idUsuario` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `askTechForum`.`RESPOSTA`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `askTechForum`.`RESPOSTA` ;
+DROP TABLE IF EXISTS `askTechForum`.`resposta` ;
 
-CREATE TABLE IF NOT EXISTS `askTechForum`.`RESPOSTA` (
+CREATE TABLE IF NOT EXISTS `askTechForum`.`resposta` (
   `idResposta` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(1000) NOT NULL,
   `idUsuario` INT NOT NULL,
@@ -63,25 +63,25 @@ CREATE TABLE IF NOT EXISTS `askTechForum`.`RESPOSTA` (
   PRIMARY KEY (`idResposta`),
   CONSTRAINT `fk_usuario_resposta`
     FOREIGN KEY (`idUsuario`)
-    REFERENCES `askTechForum`.`Usuario` (`idUsuario`)
+    REFERENCES `askTechForum`.`usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pergunta_resposta`
     FOREIGN KEY (`idPergunta`)
-    REFERENCES `askTechForum`.`PERGUNTA` (`idPergunta`)
+    REFERENCES `askTechForum`.`pergunta` (`idPergunta`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_usuario_idx` ON `askTechForum`.`RESPOSTA` (`idUsuario` ASC);
+CREATE INDEX `fk_usuario_idx` ON `askTechForum`.`resposta` (`idUsuario` ASC);
 
-CREATE INDEX `fk_pergunta_idx` ON `askTechForum`.`RESPOSTA` (`idPergunta` ASC);
+CREATE INDEX `fk_pergunta_idx` ON `askTechForum`.`resposta` (`idPergunta` ASC);
 
 
 -- -----------------------------------------------------
 -- Table `askTechForum`.`VOTO`
 -- -----------------------------------------------------
-CREATE TABLE `askTechForum`.`VOTO` (
+CREATE TABLE `askTechForum`.`voto` (
   `idVoto` INT NOT NULL AUTO_INCREMENT,
   `idUsuario` INT NOT NULL,
   `idResposta` INT NOT NULL,
@@ -90,12 +90,12 @@ CREATE TABLE `askTechForum`.`VOTO` (
   INDEX `fk_resposta_idx` (`idResposta` ASC),
   CONSTRAINT `fk_resposta_voto`
     FOREIGN KEY (`idResposta`)
-    REFERENCES `asktechforum`.`resposta` (`idResposta`)
+    REFERENCES `askTechForum`.`resposta` (`idResposta`)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
   CONSTRAINT `fk_usuario_voto`
     FOREIGN KEY (`idUsuario`)
-    REFERENCES `asktechforum`.`usuario` (`idUsuario`)
+    REFERENCES `askTechForum`.`usuario` (`idUsuario`)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE);
 

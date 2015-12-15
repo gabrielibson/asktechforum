@@ -31,34 +31,6 @@
 									<h:commandLink value="Sair" action="#{loginMB.sair }"/>
 								</h:panelGroup>
 							</h2>
-						
-						
-
-						<!--   <% Usuario usuarioLogado = new Usuario(); usuarioLogado =
-						(Usuario)session.getAttribute("usuarioLogado"); if(usuarioLogado
-						!= null) { usuarioLogado.setSenha(""); } Boolean saudacao =
-						(Boolean)session.getAttribute("saudacao");
-						session.setAttribute("cabecalho", true); %>  -->
-
-						<!-- <c:if test="${saudacao != true}">
-							<h2>
-								<a href="login.jsp">Entre</a>&nbsp; <a
-									href="cadastroUsuario.jsp">Cadastre-se</a>
-							</h2>
-						</c:if>
-
-						<c:if test="${saudacao == true}">
-							<h2>
-								<span style="color: white">Olá</span> <a
-									onclick="verificarUsuarioPerfil()" style="color: white"
-									href="<%=getServletContext().getContextPath()%>/perfilUsuario.jsp">
-									${usuarioLogado.nome}! </a>&nbsp;&nbsp; <% if(usuarioLogado !=
-								null) { if(usuarioLogado.isAdmin() == true) { %> <a
-									href="<%=getServletContext().getContextPath()%>/cadastroUsuario.jsp">Cadastrar
-									Usuário</a>&nbsp;&nbsp; <% } } %> <a
-									href="<%=getServletContext().getContextPath()%>/ServletAutenticacaoUsuario?logout=true">Sair</a>
-							</h2>
-						</c:if>  -->
 					</div>
 
 					<!-- Parte de pesquisa de pergunta. Será implementado na versão beta -->
@@ -80,34 +52,48 @@
 						<a href="#">Tags</a>
 						<ul>
 							<li>
-								<h:commandLink value="Java" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="Java" action="#{perguntaBean.consultarPerguntaPorTag }">
+									<f:setPropertyActionListener value="java" target="#{perguntaBean.tag }" />
+								</h:commandLink>
 							</li>
 							<li>
-								<h:commandLink value="Android" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="Android" action="#{perguntaBean.consultarPerguntaPorTag }">
+									<f:setPropertyActionListener value="android" target="#{perguntaBean.tag }" />
+								</h:commandLink>
 							</li>
 							<li>
-								<h:commandLink value="Redes" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="Redes" action="#{perguntaBean.consultarPerguntaPorTag }">
+									<f:setPropertyActionListener value="redes" target="#{perguntaBean.tag }" />
+								</h:commandLink>
 							</li>
 							<li>
-								<h:commandLink value="JavaScript" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="JavaScript" action="#{perguntaBean.consultarPerguntaPorTag }">
+									<f:setPropertyActionListener value="javascript" target="#{perguntaBean.tag }" />
+								</h:commandLink>
 							</li>
 							<li>
-								<h:commandLink value="SQL" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="SQL" action="#{perguntaBean.consultarPerguntaPorTag }">
+									<f:setPropertyActionListener value="sql" target="#{perguntaBean.tag }" />
+								</h:commandLink>
 							</li>
 							<li>
-								<h:commandLink value="HTML" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="HTML" action="#{perguntaBean.consultarPerguntaPorTag }">
+									<f:setPropertyActionListener value="html" target="#{perguntaBean.tag }" />
+								</h:commandLink>
 							</li>
 							<li>
-								<h:commandLink value="CSS" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="CSS" action="#{perguntaBean.consultarPerguntaPorTag }">
+									<f:setPropertyActionListener value="css" target="#{perguntaBean.tag }" />
+								</h:commandLink>
 							</li>
 							<li>
-								<h:commandLink value="Todas" action="/jsf/acessoNegado"></h:commandLink>
+								<h:commandLink value="Todas" action="#{perguntaBean.listarTodasPerguntas }"></h:commandLink>
 							</li>
 						</ul>
 					</li>
 					<li>
 					<a
-						href="/sobre.jsp">Sobre</a></li>
+						href="#">Sobre</a></li>
 					<li>
 						<h:commandLink value="Pergunte" action="cadastroPergunta"></h:commandLink>
 					</li>	

@@ -23,7 +23,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 	public String adcionarPergunta(Pergunta pergunta) throws SQLException {
 		String retorno = "cadastroSucesso";
 
-		String sql = "insert into PERGUNTA(titulo, data, hora, descricao, idUsuario, tag)values(?,?,?,?,?,?)";
+		String sql = "insert into pergunta(titulo, data, hora, descricao, idUsuario, tag)values(?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
 		 Connection con = this.conexaoUtil.getConnection();
 		try {
@@ -49,7 +49,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 
 	public void deletarPergunta(int id) throws SQLException {
 
-		String sql = "delete from PERGUNTA where idPergunta = " + id;
+		String sql = "delete from pergunta where idPergunta = " + id;
 		PreparedStatement stmt = null;
 		Connection con = conexaoUtil.getConnection();
 		
@@ -69,7 +69,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 
 		Pergunta pergunta = new Pergunta();
 
-		String sql = "select * from PERGUNTA where idPergunta = " + id;
+		String sql = "select * from pergunta where idPergunta = " + id;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		 Connection con = this.conexaoUtil.getConnection();
@@ -102,7 +102,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 			throws SQLException {
 		ArrayList<Pergunta> pergunta = new ArrayList<Pergunta>();
 
-		String sql = "select * from PERGUNTA where idUsuario = " + id
+		String sql = "select * from pergunta where idUsuario = " + id
 				+ " order by data, hora";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -202,7 +202,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 			throws SQLException {
 		ArrayList<Pergunta> pergunta = new ArrayList<Pergunta>();
 
-		String sql = "select * from PERGUNTA where idUsuario = " + data
+		String sql = "select * from pergunta where idUsuario = " + data
 				+ " order by hora";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -356,7 +356,7 @@ public class RepositorioPerguntasJDBC implements RepositorioPergunta {
 	public String alterarPergunta(Pergunta pergunta) throws SQLException {
 		String retorno = "alteracaoSucesso";
 
-		String sql = "update PERGUNTA set titulo=?, data=?, hora=?, descricao=?, idUsuario=?, tag=?  where idPergunta = ?";
+		String sql = "update pergunta set titulo=?, data=?, hora=?, descricao=?, idUsuario=?, tag=?  where idPergunta = ?";
 		PreparedStatement stmt = null;
 		 Connection con = this.conexaoUtil.getConnection();
 		try {

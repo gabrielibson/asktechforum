@@ -22,11 +22,11 @@ public class PerguntaBean {
 	private boolean perguntaCadastrada;
 	private List<ResultConsultarPergunta> listPerguntas;
 	private String tag;
-
+	
 	public PerguntaBean(){
-		this.listPerguntas = new ArrayList<ResultConsultarPergunta>();
-		this.pergunta = new Pergunta();
-		this.listarTodasPerguntas();
+	/*	this.listPerguntas = new ArrayList<ResultConsultarPergunta>();
+		this.pergunta = new Pergunta();*/
+	//	this.listarTodasPerguntas();
 	}
 	
 	public String inserirPergunta(){
@@ -48,11 +48,14 @@ public class PerguntaBean {
 	}
 	
 	public String consultarPerguntaPorTag(){
-		return "";
+		this.listPerguntas = this.fachada.fachadaConsultarPerguntaPorTag(this.tag);
+		this.tag = this.tag.toUpperCase();
+		return "/jsf/consultaPerguntasPorTag";
 	}
 	
 	public String listarTodasPerguntas(){
-		this.listPerguntas = fachada.fachadaConsultarPerguntaPorTag("all");
+		this.limparConsultas();
+		this.listPerguntas = this.fachada.fachadaConsultarPerguntaPorTag("all");
 		return "/jsf/consultaPerguntasPorTag";
 	}
 	
@@ -64,6 +67,11 @@ public class PerguntaBean {
 	public void limpar(){
 		this.perguntaCadastrada = false;
 		this.pergunta = new Pergunta();
+	}
+	
+	public void limparConsultas(){
+		this.tag = "";
+		this.listPerguntas = new ArrayList<ResultConsultarPergunta>();
 	}
 	
 	public Pergunta getPergunta() {
