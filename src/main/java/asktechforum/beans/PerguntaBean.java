@@ -26,7 +26,7 @@ public class PerguntaBean {
 	public PerguntaBean(){
 	/*	this.listPerguntas = new ArrayList<ResultConsultarPergunta>();
 		this.pergunta = new Pergunta();*/
-	//	this.listarTodasPerguntas();
+		this.listarTodasPerguntas();
 	}
 	
 	public String inserirPergunta(){
@@ -56,7 +56,7 @@ public class PerguntaBean {
 	public String listarTodasPerguntas(){
 		this.limparConsultas();
 		this.listPerguntas = this.fachada.fachadaConsultarPerguntaPorTag("all");
-		return "/jsf/consultaPerguntasPorTag";
+		return "indexPage";
 	}
 	
 	public String cadastrarPergunta(){

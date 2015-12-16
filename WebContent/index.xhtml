@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head></head>
-<h:body onload="#{perguntaBean.listarTodasPerguntas}">
+<h:body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
 			<h:form id="formConsultarPerguntasPorTodasTags" prependId="false">
@@ -26,11 +26,13 @@
 											<h:outputText value="#{pergunta.descricao }" />
 										</p>
 										<h:dataTable value="#{pergunta.listTags }" var="tag">
-											<h:commandLink value="#{tag}"
-												action="#{perguntaBean.consultarPerguntaPorTag }">
-												<f:setPropertyActionListener value="#{tag }"
-													target="#{perguntaBean.tag }" />
-											</h:commandLink>
+											<h:column>
+												<h:commandLink value="#{tag}"
+													action="#{perguntaBean.consultarPerguntaPorTag }">
+													<f:setPropertyActionListener value="#{tag }"
+														target="#{perguntaBean.tag }" />
+												</h:commandLink>
+											</h:column>
 										</h:dataTable>
 										<br /> <br />
 										<h:outputText style="font-size: 11px; position: right;"

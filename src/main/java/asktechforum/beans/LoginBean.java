@@ -43,7 +43,7 @@ public class LoginBean {
 				HttpSession session = (HttpSession) FacesContext.getCurrentInstance().
 						getExternalContext().getSession(true);
 				session.setAttribute("usuarioLogado", this.usuarioLogado);
-				retorno = "passou";
+				retorno = "indexPage";
 			}
 		}		
 		

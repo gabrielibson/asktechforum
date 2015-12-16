@@ -29,15 +29,6 @@
 										<p>
 											<h:outputText value="#{pergunta.descricao }" />
 										</p>
-										<h:dataTable value="#{pergunta.listTags }" var="tag">
-											<h:column>
-												<h:commandLink value="#{tag}"
-													action="#{perguntaBean.consultarPerguntaPorTag }">
-													<f:setPropertyActionListener value="#{tag }"
-														target="#{perguntaBean.tag }" />
-												</h:commandLink>
-											</h:column>
-										</h:dataTable>
 										<br /> <br />
 										<h:outputText style="font-size: 11px; position: right;"
 											value="Por: #{pergunta.autor }" />
