@@ -9,7 +9,7 @@
     	<from-view-id>/*</from-view-id>
     	<navigation-case>
     		<from-outcome>loginPage</from-outcome>
-    		<to-view-id>jsf/login.xhtml</to-view-id>
+    		<to-view-id>/jsf/login.xhtml</to-view-id>
     		<redirect/>
     	</navigation-case>
     	<navigation-case>
@@ -19,46 +19,60 @@
     	</navigation-case>
     	<navigation-case>
     		<from-outcome>cadastroUsuarioPage</from-outcome>
-    		<to-view-id>jsf/cadastroUsuario.xhtml</to-view-id>
+    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
     		<redirect/>
     	</navigation-case>
     	<navigation-case>
 			<from-outcome>passou</from-outcome>
-			<to-view-id>jsf/admin/home.xhtml</to-view-id>
+			<to-view-id>/jsf/admin/home.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cadastroPergunta</from-outcome>
-			<to-view-id>jsf/admin/cadastroPergunta.xhtml</to-view-id>
+			<to-view-id>/jsf/admin/cadastroPergunta.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-    	<from-view-id>jsf/cadastroUsuario.xhtml</from-view-id>
+    	<from-view-id>/jsf/cadastroUsuario.xhtml</from-view-id>
     	<navigation-case>
     		<from-outcome>sucessoCadastro</from-outcome>
-    		<to-view-id>jsf/cadastroUsuario.xhtml</to-view-id>
+    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
     		<redirect/>
     	</navigation-case>
     	<navigation-case>
     		<from-outcome>erroCadastro</from-outcome>
-    		<to-view-id>jsf/cadastroUsuario.xhtml</to-view-id>
+    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
     		<redirect/>
     	</navigation-case>
     </navigation-rule>
     
     <navigation-rule>
-    	<from-view-id>jsf/esqueciMinhaSenha.xhtml</from-view-id>
+    	<from-view-id>/jsf/esqueciMinhaSenha.xhtml</from-view-id>
     	<navigation-case>
     		<from-outcome>senhaEnviada</from-outcome>
-    		<to-view-id>jsf/esqueciMinhaSenha.xhtml</to-view-id>
+    		<to-view-id>/jsf/esqueciMinhaSenha.xhtml</to-view-id>
     		<redirect/>
     	</navigation-case>
     	<navigation-case>
     		<from-outcome>emailNaoCadastrado</from-outcome>
-    		<to-view-id>jsf/esqueciMinhaSenha.xhtml</to-view-id>
+    		<to-view-id>/jsf/esqueciMinhaSenha.xhtml</to-view-id>
     		<redirect/>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+    	<from-view-id>/jsf/consultaPerguntasPorTag.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>consultarRespostas</from-outcome>
+    		<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>curtirDescurtirResposta</from-outcome>
+    		<to-view-id>/jsf/consultarRespostasPorPergunta</to-view-id>
+    		<redirect />
     	</navigation-case>
     </navigation-rule>
 <!--     <navigation-rule>

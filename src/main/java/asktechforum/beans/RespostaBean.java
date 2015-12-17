@@ -1,5 +1,7 @@
 package asktechforum.beans;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ManagedBean;
 
 import asktechforum.dominio.Pergunta;
@@ -12,14 +14,49 @@ public class RespostaBean {
 	private Resposta resposta;
 	private Pergunta pergunta;
 	private Fachada fachada;
+	private ArrayList<Resposta> listRespostas;
 
 	public RespostaBean(){
 		this.fachada = Fachada.getInstance();
+		this.listRespostas = new ArrayList<Resposta>();
 	}
 	
 	public String consultarRepostasPergunta(){
 		this.pergunta = this.fachada.fachadaConsultarPerguntaPorIdPergunta(this.idPergunta);
+		this.listRespostas = fachada.fachadaConsultarRespostaPorPergunta(this.idPergunta);
+		return "consultarRespostas";
+	}
+	
+	public String responderPergunta(){
 		return "";
+	}
+	
+	public String alterarPergunta(){
+		return "";
+	}
+	
+	public String excluirPergunta(){
+		return "";
+	}
+	
+	public String alterarResposta(){
+		return "";
+	}
+	
+	public String excluirResposta(){
+		return "";
+	}
+	
+	public String curtirResposta(){
+		this.fachada.fachadaAdicionarVotoResposta(this.resposta.getIdResposta());
+		this.fachada.fachadaAdicionarVotoUsuario(this.resposta.getIdUsuario(), this.resposta.getIdResposta());
+		return "curtirDescurtirResposta";
+	}
+	
+	public String descurtirResposta(){
+		fachada.fachadaRemoverVotoResposta(this.resposta.getIdResposta());
+		fachada.fachadaDeletarUsuarioVoto(this.resposta.getIdUsuario(), this.resposta.getIdResposta());
+		return "curtirDescurtirResposta";
 	}
 	
 	public Resposta getResposta() {
@@ -44,6 +81,18 @@ public class RespostaBean {
 
 	public void setPergunta(Pergunta pergunta) {
 		this.pergunta = pergunta;
+	}
+
+	public ArrayList<Resposta> getListRespostas() {
+		return listRespostas;
+	}
+
+	public void setListRespostas(ArrayList<Resposta> listRespostas) {
+		this.listRespostas = listRespostas;
+	}
+
+	public boolean isCurtiu() {
+		return this.fachada.fachadaConsultarUsuarioVoto(this.resposta.getIdUsuario(), this.resposta.getIdResposta());
 	}
 	
 	

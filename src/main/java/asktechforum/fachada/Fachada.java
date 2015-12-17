@@ -190,4 +190,8 @@ public class Fachada {
 		this.votoBC.deletarUsuarioVoto(idUsuario, idResposta);
 	}
 	
+	public boolean fachadaConsultarUsuarioVoto(int idUsuario, int idResposta){
+		return this.votoBC.consultarUsuarioVoto(idUsuario, idResposta);
+	}
+	
 }
