@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html" 
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<br />
+			<br />
+			<br />
+
+			<div id="site_content">
+				<div class="content">
+					<h1>Perfil de 
+						<h:outputText value="#{userBean.usuarioSelecionado.nome}"/>
+					</h1>
+					<div class="content_item">
+						<div class="form_settings_perfil">
+							<h:form id="formPerfilUsuario" prependId="false">
+								<h:panelGrid columns="2" border="0" id="tableRespostas">
+									<h:outputLabel>Nome: </h:outputLabel>
+									<h:outputText value="#{userBean.usuarioSelecionado.nome}"/>
+
+									<h:outputLabel>Data de Nascimento: </h:outputLabel>
+									<h:panelGroup>
+										<h:outputText
+											value="#{userBean.usuarioSelecionado.dataNascimento}"
+											rendered="#{userBean.usuarioSelecionado.dataNascimento != null}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+										<h:outputText
+											value="Preferiu não informar =)"
+											rendered="#{userBean.usuarioSelecionado.dataNascimento == null}">
+										</h:outputText>
+									</h:panelGroup>
+									
+									<h:outputLabel>Email: </h:outputLabel>
+									<h:outputText value="#{userBean.usuarioSelecionado.email}"/>
+									
+									<h:outputLabel>Localização: </h:outputLabel>
+									<h:panelGroup>
+										<h:outputText value="#{userBean.usuarioSelecionado.localizacao}"
+											rendered="#{not empty userBean.usuarioSelecionado.localizacao}">
+										</h:outputText>
+										<h:outputText value="Preferiu não informar =)"
+											rendered="#{empty userBean.usuarioSelecionado.localizacao}">
+										</h:outputText>
+									</h:panelGroup>
+									
+									<h:outputLabel>Administrador </h:outputLabel>
+									<h:panelGroup>
+										<h:outputText value="Sim"
+											rendered="#{userBean.usuarioSelecionado.admin}">
+										</h:outputText>
+										<h:outputText value="Não"
+											rendered="#{!userBean.usuarioSelecionado.admin}">
+										</h:outputText>
+									</h:panelGroup>
+								</h:panelGrid>
+							</h:form>
+
+							<!-- <h:form id="formExclusaoPerfilUsuario"
+								action="ServletExclusaoUsuario" method="post">
+								<input type="hidden" name="exclusaoUsuarioEmail"
+									id="exclusaoUsuarioEmail" value="${usuarioExcluido.email}"
+									checked="checked" />
+							</h:form> -->
+
+							<h:form>
+								<p>
+									<h:commandButton styleClass="submit" value="Editar Perfil"
+										rendered="#{userBean.usuarioSelecionado.idUsuario == loginMB.usuarioLogado.idUsuario 
+											or loginMB.usuarioLogado.admin}" action="#{userBean.alterarUsuario}"/>
+									&nbsp;
+									<h:commandButton styleClass="submit" value="Excluir Perfil"
+										rendered="#{userBean.usuarioSelecionado.idUsuario == loginMB.usuarioLogado.idUsuario 
+											or loginMB.usuarioLogado.admin}" action="#{userBean.excluirUsuario}"/>
+									&nbsp;	
+									<h:commandButton styleClass="submit" action="pesquisarUsuariosPage" value="Voltar"/>
+								</p>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -20,8 +20,8 @@
 								<h1>
 									<h:commandLink value="#{pergunta.titulo }"
 										action="#{respostaBean.consultarRepostasPergunta }">
-										<f:setPropertyActionListener value="#{pergunta.idPergunta }"
-											target="#{respostaBean.idPergunta }" />
+										<f:setPropertyActionListener value="#{pergunta }"
+											target="#{respostaBean.pergunta }" />
 									</h:commandLink>
 								</h1>
 								<div class="content_item">

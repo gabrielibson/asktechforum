@@ -21,11 +21,11 @@ import asktechforum.fachada.Fachada;
  */
 public class ServletConsultarRespostaPergunta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String RESULTADO_CONSULTA = "consultarRespostaPorPergunta.jsp";
-	private static final String ALTERACAO_RESPOSTA = "usuarioAutenticado/alterarResposta.jsp";
-	private static final String ALTERACAO_PERGUNTA = "usuarioAutenticado/alterarPergunta.jsp";
-	private static final String EXCLUSAO_PERGUNTA_SUCESSO = "usuarioAutenticado/exclusaoPerguntaSucesso.jsp";
-	private static final String EXCLUSAO_RESPOSTA_SUCESSO = "usuarioAutenticado/exclusaoRespostaSucesso.jsp";
+	private static final String RESULTADO_CONSULTA = "jsp/consultarRespostaPorPergunta.jsp";
+	private static final String ALTERACAO_RESPOSTA = "jsp/usuarioAutenticado/alterarResposta.jsp";
+	private static final String ALTERACAO_PERGUNTA = "jsp/usuarioAutenticado/alterarPergunta.jsp";
+	private static final String EXCLUSAO_PERGUNTA_SUCESSO = "jsp/usuarioAutenticado/exclusaoPerguntaSucesso.jsp";
+	private static final String EXCLUSAO_RESPOSTA_SUCESSO = "jsp/usuarioAutenticado/exclusaoRespostaSucesso.jsp";
 	//private CadastroRespostaBC cadastroRespostaBC = new CadastroRespostaBC();
 	//private CadastroPerguntaBC cadastroPerguntaBC = new CadastroPerguntaBC();
        

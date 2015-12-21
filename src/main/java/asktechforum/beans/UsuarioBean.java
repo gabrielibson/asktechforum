@@ -1,6 +1,7 @@
 package asktechforum.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -24,9 +25,16 @@ public class UsuarioBean implements Serializable{
 	private Fachada fachada;
 	private boolean cadastrado;
 	private String dataNascimentoStr;
+	private Usuario usuarioSelecionado;
+	private String tipoPesquisa;
+	private String msgErroTipoPesquisa;
+	private String msgErroUsuarioNaoSelecionado;
+	private boolean resultadoVazio;
+	private String nomePesquisa;
+	private String emailPesquisa;
 	
 	public UsuarioBean() {
-		this.usuario = new Usuario();
+		this.limpar();
 		this.fachada = Fachada.getInstance();
 	}
 	
@@ -59,14 +67,81 @@ public class UsuarioBean implements Serializable{
 		}
 	}
 	
+	public String alterarUsuario(){
+		return "";
+	}
+	
+	public String excluirUsuario(){
+		return "";
+	}
+	
 	public String chamarCadastroUsuario(){
 		limpar();
 		return "cadastroUsuarioPage";
 	}
 	
+	public String pesquisarUsuario(){
+		this.limpar();
+		
+		if(this.tipoPesquisa != null && this.tipoPesquisa.trim() != "") {
+			switch (this.tipoPesquisa) {
+			case "nome":
+				if(this.nomePesquisa != null && this.nomePesquisa.trim() != "") {
+					this.usuarios.addAll(fachada.fachadaConsultarUsuarioPorNome(this.nomePesquisa));
+				}else{
+					this.msgErroTipoPesquisa = "Informe o nome do usuário.";
+				}
+				break;
+			case "email":
+				if(this.emailPesquisa != null && this.emailPesquisa.trim() != "") {
+					Usuario usuario = fachada.fachadaConsultarUsuarioPorEmail(this.emailPesquisa);
+					if(usuario != null) {
+						if(usuario.getIdUsuario() != 0) {
+							this.usuarios.add(fachada.fachadaConsultarUsuarioPorEmail(usuario.getEmail()));
+						}
+					}
+				}else{
+					this.msgErroTipoPesquisa = "Informe o email do usuário.";
+				}
+				break;
+			case "todos":
+				this.usuarios.addAll(fachada.fachadaConsultarTodosUsuarios());
+				break;
+			case "":
+				break;
+			default:
+				break;
+			}
+		}else{
+			this.msgErroTipoPesquisa = "* Selecione uma das opções acima para pesquisar.";
+		}
+		
+		if(this.msgErroTipoPesquisa.equals("") && this.usuarios.isEmpty()){
+			this.resultadoVazio = true;
+		}
+
+		return "pesquisarUsuariosPage";
+	}
+	
+	public String exibirPerfilUsuario(){
+		
+		String retorno = "";
+		if(this.usuarioSelecionado == null){
+			this.msgErroUsuarioNaoSelecionado = "* Selecione um usuário para ver o perfil.";
+			retorno = "pesquisarUsuariosPage";
+		}else{
+			retorno = "perfilUsuarioPage"; 
+		}
+		return retorno;
+	}
+	
 	public void limpar(){
+		this.msgErroTipoPesquisa = "";
+		this.msgErroUsuarioNaoSelecionado = "";
 		this.usuario = new Usuario();
+		this.usuarios = new ArrayList<>();
 		this.cadastrado = false;
+		this.resultadoVazio = false;
 	}
 	
 	public Usuario getUsuario() {
@@ -114,6 +189,62 @@ public class UsuarioBean implements Serializable{
 
 	public void setDataNascimentoStr(String dataNascimentoStr) {
 		this.dataNascimentoStr = dataNascimentoStr;
+	}
+
+	public Usuario getUsuarioSelecionado() {
+		return usuarioSelecionado;
+	}
+
+	public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
+		this.usuarioSelecionado = usuarioSelecionado;
+	}
+
+	public String getTipoPesquisa() {
+		return tipoPesquisa;
+	}
+
+	public void setTipoPesquisa(String tipoPesquisa) {
+		this.tipoPesquisa = tipoPesquisa;
+	}
+
+	public String getMsgErroTipoPesquisa() {
+		return msgErroTipoPesquisa;
+	}
+
+	public void setMsgErroTipoPesquisa(String msgErroTipoPesquisa) {
+		this.msgErroTipoPesquisa = msgErroTipoPesquisa;
+	}
+
+	public String getMsgErroUsuarioNaoSelecionado() {
+		return msgErroUsuarioNaoSelecionado;
+	}
+
+	public void setMsgErroUsuarioNaoSelecionado(String msgErroUsuarioNaoSelecionado) {
+		this.msgErroUsuarioNaoSelecionado = msgErroUsuarioNaoSelecionado;
+	}
+
+	public boolean isResultadoVazio() {
+		return resultadoVazio;
+	}
+
+	public void setResultadoVazio(boolean resultadoVazio) {
+		this.resultadoVazio = resultadoVazio;
+	}
+
+	public String getNomePesquisa() {
+		return nomePesquisa;
+	}
+
+	public void setNomePesquisa(String nomePesquisa) {
+		this.nomePesquisa = nomePesquisa;
+	}
+
+	public String getEmailPesquisa() {
+		return emailPesquisa;
+	}
+
+	public void setEmailPesquisa(String emailPesquisa) {
+		this.emailPesquisa = emailPesquisa;
 	}
 	
 	

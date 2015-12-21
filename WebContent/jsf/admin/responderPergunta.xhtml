@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html" 
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="formconsultaPerguntaPorTag" prependId="false">
+				<div id="site_content">
+					<h:panelGroup id="panelCadastroResposta"
+						rendered="#{!respostaBean.sucessoCadastro}">
+						<div class="content">
+							<h1>Responder</h1>
+							<div class="content_item">
+								<div style="height: 320px; width: 300px;"
+									class="form_settings_cadastro">
+									<p>
+										<span>Descrição </span>
+										<h:inputTextarea class="contact" rows="8" cols="20"
+											value="#{respostaBean.resposta.descricao}" />
+									</p>
+
+									<h:panelGroup id="panelMsgErro"
+										rendered="#{not empty respostaBean.msgErro}">
+										<p style="color: red; font-size: 12px;">
+											<h:outputText value="#{respostaBean.msgErro}" />
+										</p>
+									</h:panelGroup>
+									<h:commandButton class="submit" value="Enviar"
+										action="#{respostaBean.cadastrarResposta}" />
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+					<h:panelGroup id="panelSucessoCadastro" rendered="#{respostaBean.sucessoCadastro}">
+						<div class="content">
+							<h1>Yeah!</h1>
+							<div class="content_item">
+								<div class="form_settings_perfil">
+									<h:form>
+										<h2>Resposta cadastrada com sucesso!</h2>
+										<p>
+											<h:commandButton value="Voltar" action="#{respostaBean.consultarRepostasPergunta}" class="submit" />
+										</p>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

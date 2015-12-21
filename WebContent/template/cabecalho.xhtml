@@ -26,8 +26,15 @@
 								<h:commandLink value="Cadastre-se" action="cadastroUsuarioPage" rendered="#{loginMB.usuarioLogado == null }"/>
 								
 								<h:panelGroup rendered="#{loginMB.usuarioLogado != null }"> 
-									<h:outputText value="Olá #{loginMB.usuarioLogado.nome }"/>
+									<h:outputText value="Olá "/>&nbsp;
+									<h:commandLink style="color: white" value="#{loginMB.usuarioLogado.nome }" 
+										action="#{userBean.exibirPerfilUsuario}">
+										<f:setPropertyActionListener value="#{loginMB.usuarioLogado}" target="#{userBean.usuarioSelecionado}"/>
+									</h:commandLink>
 									&nbsp;
+									<h:panelGroup rendered="#{loginMB.usuarioLogado.admin}">
+										<h:commandLink value="Cadastrar Usuário" action="#{userBean.chamarCadastroUsuario}"/>&nbsp;&nbsp;
+									</h:panelGroup>
 									<h:commandLink value="Sair" action="#{loginMB.sair }"/>
 								</h:panelGroup>
 							</h2>
@@ -46,7 +53,7 @@
 						<h:commandLink value="Perguntas" action="#{perguntaBean.listarTodasPerguntas }"></h:commandLink>
 					</li>
 					<li>
-						<h:commandLink value="Usuários" action="/jsf/acessoNegado"></h:commandLink>
+						<h:commandLink value="Usuários" action="pesquisarUsuariosPage"></h:commandLink>
 					</li>
 					<li> 
 						<a href="#">Tags</a>

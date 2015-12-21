@@ -32,6 +32,14 @@
 			<to-view-id>/jsf/admin/cadastroPergunta.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>pesquisarUsuariosPage</from-outcome>
+			<to-view-id>/jsf/admin/pesquisarUsuario.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>perfilUsuarioPage</from-outcome>
+			<to-view-id>/jsf/admin/perfilUsuario.xhtml</to-view-id>
+		</navigation-case>
     </navigation-rule>
     
     <navigation-rule>
@@ -75,77 +83,50 @@
     		<redirect />
     	</navigation-case>
     </navigation-rule>
-<!--     <navigation-rule>
-		<from-view-id>jsf/login.jsf</from-view-id>
+	
+	 <navigation-rule>
+    	<from-view-id>/index.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>consultarRespostas</from-outcome>
+    		<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    </navigation-rule>
 		
-		
+	<navigation-rule>
+		<from-view-id>/jsf/admin/responderPergunta.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{loginMB.esqueceuSenha}</from-action>
-			<from-outcome>esqueceuSenha</from-outcome>
-			<to-view-id>/forgotPassword.xhtml</to-view-id>
+    		<from-outcome>responderPerguntaPage</from-outcome>
+    		<to-view-id>/jsf/admin/responderPergunta.xhtml</to-view-id>
+    		<redirect/>
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>consultarRespostas</from-outcome>
+    		<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+    		<redirect/>
+    	</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/jsf/consultarRespostasPorPergunta.xhtml</from-view-id>
+		<navigation-case>
+    		<from-outcome>responderPerguntaPage</from-outcome>
+    		<to-view-id>/jsf/admin/responderPergunta.xhtml</to-view-id>
+    		<redirect/>
+    	</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/jsf/admin/pesquisarUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisarUsuariosPage</from-outcome>
+			<to-view-id>/jsf/admin/pesquisarUsuario.xhtml</to-view-id>
+			<redirect/>
 		</navigation-case>
-	</navigation-rule> -->
-	
-<!--     	<lifecycle> -->
-<!-- 		  <phase-listener>br.ufpe.nti.curriculos.apresentacao.ControleDeAcessoPH</phase-listener> -->
-<!-- 	    </lifecycle> -->
-		
-		
-<!-- 	<navigation-rule> -->
-<!-- 		<from-view-id>/*</from-view-id> -->
-<!-- 		<navigation-case> -->
-<!-- 			<from-outcome>loginPage</from-outcome> -->
-<!-- 			<to-view-id>/login.jsp</to-view-id> -->
-<!-- 			<redirect/> -->
-<!-- 		</navigation-case> -->
-<!-- 	</navigation-rule> -->
-	
-	
-		
-<!-- 	<application> -->
-<!-- 		<resource-bundle> -->
-<!-- 			<base-name>br.ufpe.nti.curriculos.properties.login_mensagens_erro</base-name> -->
-<!-- 			<var>loginmsg</var> -->
-<!-- 		</resource-bundle> -->
-<!-- 	</application> -->
-
-<!-- 	<application> -->
-<!-- 		<resource-bundle> -->
-<!-- 			<base-name>br.ufpe.nti.curriculos.properties.mensagens</base-name> -->
-<!-- 			<var>msg</var> -->
-<!-- 		</resource-bundle> -->
-		
-<!-- 		<resource-bundle> -->
-<!-- 			<base-name>br.ufpe.nti.curriculos.properties.label</base-name> -->
-<!-- 			<var>label</var> -->
-<!-- 		</resource-bundle> -->
-<!-- 	</application> -->
-	
-<!-- 	<navigation-rule> -->
-<!-- 		<from-view-id>/admin/cadastrar-usuario.xhtml</from-view-id> -->
-<!-- 		<navigation-case> -->
-<!-- 			<from-action>#{userBean.cadastrar}</from-action> -->
-<!-- 			<from-outcome>sucesso</from-outcome> -->
-<!-- 			<to-view-id>/admin/tela-sucesso-cadastro.xhtml</to-view-id> -->
-<!-- 		</navigation-case> -->
-<!-- 		<navigation-case> -->
-<!-- 			<from-outcome>erro</from-outcome> -->
-<!-- 			<to-view-id>/admin/tela-erro-cadastro.xhtml</to-view-id> -->
-<!-- 		</navigation-case> -->
-<!-- 	</navigation-rule> -->
-	
-<!-- 	<navigation-rule> -->
-<!-- 		<from-view-id>/admin/alterarSenha.xhtml</from-view-id> -->
-<!-- 		<navigation-case> -->
-<!-- 			<from-action>#{userBean.alterarSenha}</from-action> -->
-<!-- 			<from-outcome>sucessoAlterarSenha</from-outcome> -->
-<!-- 			<to-view-id>/admin/tela-sucesso-alterarSenha.xhtml</to-view-id> -->
-<!-- 		</navigation-case> -->
-<!-- 		<navigation-case> -->
-<!-- 		    <from-action>#{userBean.alterarSenha}</from-action> -->
-<!-- 			<from-outcome>erroAlterarSenha</from-outcome> -->
-<!-- 			<to-view-id>/admin/tela-erro-alterarSenha.xhtml</to-view-id> -->
-<!-- 		</navigation-case> -->
-<!-- 	</navigation-rule> -->
-
+		<navigation-case>
+			<from-outcome>perfilUsuarioPage</from-outcome>
+			<to-view-id>/jsf/admin/perfilUsuario.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

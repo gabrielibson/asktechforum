@@ -20,9 +20,9 @@ import asktechforum.fachada.Fachada;
 public class ServletConsultarPerguntaPorTag extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String RESULTADO_CONSULTA = "consultaPerguntaPorTag.jsp";
-	private static final String INDEX = "index.jsp"; 
-	private static final String TODAS_AS_TAGS = "consultaTodas_asTags.jsp";
+	private static final String RESULTADO_CONSULTA = "/jsp/consultaPerguntaPorTag.jsp";
+	private static final String INDEX = "/jsp/index.jsp"; 
+	private static final String TODAS_AS_TAGS = "jsp/consultaTodas_asTags.jsp";
 
 	/**
      * Construtor do Servlet de Consultar Pergunta por Tag.

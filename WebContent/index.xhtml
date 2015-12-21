@@ -16,8 +16,11 @@
 								<h1>
 									<h:commandLink value="#{pergunta.titulo }"
 										action="#{respostaBean.consultarRepostasPergunta }">
-										<f:setPropertyActionListener value="#{pergunta.idPergunta }"
-											target="#{respostaBean.idPergunta }" />
+									<!-- 	<f:setPropertyActionListener value="#{pergunta.idPergunta }"
+											target="#{respostaBean.idPergunta }" /> -->
+									
+											<f:setPropertyActionListener value="#{pergunta}"
+											target="#{respostaBean.pergunta}" />
 									</h:commandLink>
 								</h1>
 								<div class="content_item">
@@ -29,7 +32,7 @@
 											<h:column>
 												<h:commandLink value="#{tag}"
 													action="#{perguntaBean.consultarPerguntaPorTag }">
-													<f:setPropertyActionListener value="#{tag }"
+													<f:setPropertyActionListener value="#{tag}"
 														target="#{perguntaBean.tag }" />
 												</h:commandLink>
 											</h:column>
@@ -42,8 +45,8 @@
 												value="Em: #{pergunta.data }" />
 											<h:outputText style="font-size: 9px; position: right;"
 												value=" às #{pergunta.hora }" />
-											<h:outputText value="Repostas: #{pergunta.qtdResposta }"/>
 										</p>
+										<p><h:outputText value="Repostas: #{pergunta.qtdResposta }"/></p>
 									</div>
 								</div>
 							</div>

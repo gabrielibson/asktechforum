@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html" 
+ 	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<br />
+			<br />
+			<br />
+
+			<div id="site_content">
+				<div class="content">
+					<h1>Pesquisar Usuários</h1>
+					<div class="content_item">
+						<h:form>
+							<h:panelGrid border="0" columns="2">
+								<h:panelGroup>
+									<h:selectOneRadio id="radioTipoPesquisa" layout="pageDirection"
+										value="#{userBean.tipoPesquisa}">
+										<f:selectItem itemValue="nome" />
+										<f:selectItem itemValue="email" />
+										<f:selectItem itemValue="todos" />
+									</h:selectOneRadio>
+								</h:panelGroup>
+								<h:panelGroup>
+									<h:panelGrid columns="2">
+										<h:outputLabel for="nome"> Nome: </h:outputLabel>
+										<h:inputText styleClass="input"
+											value="#{userBean.nomePesquisa}" id="nome" />
+										<h:outputLabel for="email"> E-mail: </h:outputLabel>
+										<h:inputText styleClass="input"
+											value="#{userBean.emailPesquisa}" id="email" />
+										<h:outputLabel for="listarTodos">Listar	Todos</h:outputLabel>
+									</h:panelGrid>
+								</h:panelGroup>
+							</h:panelGrid>
+							<h:panelGroup
+								rendered="#{not empty userBean.msgErroTipoPesquisa}">
+								<p style="color: red; font-size: 12px;">
+									<h:outputText value="#{userBean.msgErroTipoPesquisa}" />
+								</p>
+							</h:panelGroup>
+							<h:commandButton value="Pesquisar" styleClass="submit"
+								action="#{userBean.pesquisarUsuario}" />
+							<br />
+							<br />
+
+							<h:panelGroup rendered="#{not empty userBean.usuarios}">
+								<h:dataTable value="#{userBean.usuarios}" var="usuario"
+									border="0">
+									<h:column>
+										<f:facet name="header">Nome</f:facet>
+										<h:outputText value="#{usuario.nome}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Data de Nascimento</f:facet>
+										<h:outputText value="#{usuario.dataNascimento}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Email</f:facet>
+										<h:outputText value="#{usuario.email}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Localização</f:facet>
+										<h:outputText value="#{usuario.localizacao}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Administrador</f:facet>
+										<h:outputText value="Sim" rendered="#{usuario.admin}" />
+										<h:outputText value="Não" rendered="#{!usuario.admin}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Ação</f:facet>
+										<h:commandButton value="Exibir Perfil" styleClass="submit"
+											action="#{userBean.exibirPerfilUsuario}" >
+											<f:setPropertyActionListener value="#{usuario}" target="#{userBean.usuarioSelecionado}" />
+										</h:commandButton>
+									</h:column>
+								</h:dataTable>
+								<h:panelGroup
+									rendered="#{not empty userBean.msgErroUsuarioNaoSelecionado}">
+									<p style="color: red; font-size: 12px;">
+										<h:outputText value="#{userBean.msgErroUsuarioNaoSelecionado}" />
+									</p>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{userBean.resultadoVazio}">
+								<p style="color: red; font-size: 12px;">
+									<h:outputText value="Não foi encontrado nenhum usuário." />
+								</p>
+							</h:panelGroup>
+						</h:form>
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

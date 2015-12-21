@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Insert title here</title>
@@ -11,73 +11,94 @@
 <body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<h:form id="formConsultarRespostaPorPergunta">
-				<div id="site_content">	
-					<div style="width: 1000px;" class="content">	
+			<h:form id="formConsultarRespostaPorPergunta" prependId="false">
+				<div id="site_content">
+					<div style="width: 1000px;" class="content">
 						<h1>
-							<h:outputText value="#{respostaBean.pergunta.descricao }"/>
-							<h:outputText style="font-size: 16px; float: right;" value="#{respostaBean.pergunta.autor }"/>
+							<h:outputText value="#{respostaBean.pergunta.titulo }" />
+							<h:outputText style="font-size: 16px; float: right;"
+								value="Por: #{respostaBean.pergunta.autor }" />
 						</h1>
-						&nbsp;&nbsp;&nbsp;<h:outputText  style="margin-left: 5px;" value="#{respostaBean.pergunta.titulo }"/>
-						<br />
-						<br />
+						&nbsp;&nbsp;&nbsp;
+						<h:outputText style="margin-left: 5px;"
+							value="#{respostaBean.pergunta.descricao }" />
+						<br /> <br />
 						<p>
-							<h:commandButton id="submitMenorAlterarPergunta" styleClass="submit" value="Alterar" 
-								rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.idUsuario == respostaBean.pergunta.idUsuario}"	
-										action="#{respostaBean.alterarPergunta }"/>
-										
-							<h:commandButton id="submitMenorExcluirPergunta" styleClass="submit" value="Excluir" 
-								rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.isAdmin or loginMB.usuarioLogado != null and 
-									loginMB.usuarioLogado.idUsuario == respostaBean.pergunta.idUsuario}"	
-										action="#{respostaBean.excluirPergunta }"/>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<h:commandButton styleClass="submitMenor" value="Alterar"
+								rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.idUsuario == respostaBean.pergunta.idUsuario}"
+								action="#{respostaBean.alterarPergunta }" />
+							&nbsp;
+							<h:commandButton styleClass="submitMenor" value="Excluir"
+								rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.admin or loginMB.usuarioLogado != null and 
+									loginMB.usuarioLogado.idUsuario == respostaBean.pergunta.idUsuario}"
+								action="#{respostaBean.excluirPergunta }" />
 						</p>
-						<h:dataTable value="#{respostaBean.listRespostas }" var="resposta" rendered="#{ not empty respostaBean.listRespostas }">
-							<div class="content">
-								<div class="content_item">
-									<div style="width: 900px;" class="form_settings_cadastro">
-										<p>
-											<h:outputText value="#{resposta.descricao }"/>
-											<h:panelGroup style="float: right; font-weight:bold;" rendered="#{loginMB.usuarioLogado != null }">
-												<h:commandLink action="#{respostaBean.descurtirResposta }" rendered="#{!resposta.curtiu }">
-													<h:graphicImage value="../images/dislike.gif"/>
-													<f:setPropertyActionListener value="#{respostaBean.resposta }" target="#{resposta }"/>
-												</h:commandLink>												
-												<h:commandLink action="#{respostaBean.curtirResposta }" rendered="#{resposta.curtiu }">
-													<h:graphicImage value="../images/like.gif"/>
-													<f:setPropertyActionListener value="#{respostaBean.resposta }" target="#{resposta }"/>
-												</h:commandLink>
-												<br />
-												<h:outputText value="Votos: #{resposta.votos }"/>
-											</h:panelGroup>
-										</p>
-										<p>
-											<h:outputText style="font-size: 11px; position: right;" value="Por: #{resposta.nomeUsuario }" />
+					</div>
+				</div>
+				<div id="site_content">
+					<h:dataTable value="#{respostaBean.listRespostas }" var="resposta"
+						id="tableRespostas" rowClasses="content" 
+						binding="#{respostaBean.dataTableListRespostas}"
+						rendered="#{ not empty respostaBean.listRespostas }">
+						<h:column>
+							<div class="content_item">
+								<div class="form_settings_cadastro" style="width: 900px;">
+									<p>
+										<h:outputText value="#{resposta.descricao }" />
+										<h:panelGroup style="float: right; font-weight:bold;"
+											rendered="#{loginMB.usuarioLogado != null }">
+											<h:commandLink action="#{respostaBean.descurtirResposta }"
+												rendered="#{!respostaBean.curtiu }">
+												<h:graphicImage style="width:40px;"
+													value="../images/dislike.gif" />
+												<f:setPropertyActionListener value="#{resposta}"
+													target="#{respostaBean.resposta}" />
+											</h:commandLink>
+											<h:commandLink action="#{respostaBean.curtirResposta }"
+												rendered="#{respostaBean.curtiu }">
+												<h:graphicImage style="width:40px;"
+													value="../images/like.gif" />
+												<f:setPropertyActionListener value="#{resposta}"
+													target="#{respostaBean.resposta }" />
+											</h:commandLink>
 											<br />
-											<h:outputText style="font-size: 9px; position: right;" value="Em: #{resposta.data } "/>
-											<h:outputText style="font-size: 9px; position: right;" value="às #{resposta.hora }"/>
-										</p>
-										<p>
-											<h:commandLink id="submitMenorAlterar" value="Alterar"
-												rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.idUsuario == resposta.idUsuario }"
-												action="#{respostaBean.alterarResposta }" >
-												
-												<f:setPropertyActionListener value="#{respostaBean.resposta }" target="#{resposta }" />	
-											</h:commandLink>
+											<h:outputText value="Votos: #{resposta.votos }" />
+										</h:panelGroup>
+									</p>
+									<p>
+										<h:outputText style="font-size: 11px; position: right;"
+											value="Por: #{resposta.nomeUsuario }" />
+										<br />
+										<h:outputText style="font-size: 9px; position: right;"
+											value="Em: #{resposta.data } " />
+										<h:outputText style="font-size: 9px; position: right;"
+											value="às #{resposta.hora }" />
+									</p>
+									<p>
+										<h:commandLink styleClass="submitMenor" value="Alterar" style="margin-right: 10px;"
+											rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.idUsuario == resposta.idUsuario }"
+											action="#{respostaBean.alterarResposta }">
 
-											<h:commandLink id="submitMenorExcluir" value="Excluir"
-												rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.isAdmin or
+											<f:setPropertyActionListener
+												value="#{respostaBean.resposta }" target="#{resposta }" />
+										</h:commandLink>
+										
+										<h:commandLink styleClass="submitMenor" value="Excluir"
+											rendered="#{loginMB.usuarioLogado != null and loginMB.usuarioLogado.admin or
 												loginMB.usuarioLogado != null and loginMB.usuarioLogado.idUsuario == resposta.idUsuario}"
-												action="#{respostaBean.excluirResposta }" >
-												
-												<f:setPropertyActionListener value="#{respostaBean.resposta }" target="#{resposta }" />
-											</h:commandLink>
-										</p>
-									</div>
+											action="#{respostaBean.excluirResposta }">
+
+											<f:setPropertyActionListener
+												value="#{respostaBean.resposta }" target="#{resposta }" />
+										</h:commandLink>
+									</p>
 								</div>
 							</div>
-						</h:dataTable>
-						<h:commandButton styleClass="submit" value="Responder" action="#{respostaBean.responderPergunta }"/>
-					</div>
+						</h:column>
+					</h:dataTable>
+					<h:commandButton styleClass="submit" value="Responder"
+						action="#{respostaBean.responderPergunta}" />
 				</div>
 			</h:form>
 		</ui:define>

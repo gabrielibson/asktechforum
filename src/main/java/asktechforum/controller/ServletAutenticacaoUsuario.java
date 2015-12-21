@@ -44,7 +44,7 @@ public class ServletAutenticacaoUsuario  extends HttpServlet {
         HttpSession session = request.getSession();  
         if ("true".equals(logout)){   
                 
-            response.sendRedirect(getServletContext().getContextPath()+"/index.jsp"); 
+            response.sendRedirect(getServletContext().getContextPath()+"/jsp/index.jsp"); 
             session.invalidate(); 
         }            
     }  
@@ -81,7 +81,7 @@ public class ServletAutenticacaoUsuario  extends HttpServlet {
     		//se o dao retornar um usuario, coloca o mesmo na sessao
     		session.setAttribute("usuarioLogado", user);
     		session.setAttribute("saudacao", saudacao);
-    		request.getRequestDispatcher("/index.jsp" ).forward(request, response);
+    		request.getRequestDispatcher("/jsp/index.jsp" ).forward(request, response);
     	}
     } 
 }

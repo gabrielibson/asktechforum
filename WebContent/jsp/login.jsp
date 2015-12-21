@@ -1,6 +1,6 @@
 <%@ include file="cabecalho.jsp"%>
 
-<form method="post" action="ServletAutenticacaoUsuario" id="formLogin">
+<form method="post" action="../ServletAutenticacaoUsuario" id="formLogin">
 
 	<div id="site_content">
 		<div class="content">

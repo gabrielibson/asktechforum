@@ -20,8 +20,8 @@ import asktechforum.util.Util;
  */
 public class ServletCadastroPergunta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String SUCESSOCADASTRO = "usuarioAutenticado/cadastroPerguntaSucesso.jsp";
-	private final String SUCESSOALTERAR = "usuarioAutenticado/alterarPerguntaSucesso.jsp";
+	private final String SUCESSOCADASTRO = "jsp/usuarioAutenticado/cadastroPerguntaSucesso.jsp";
+	private final String SUCESSOALTERAR = "jsp/usuarioAutenticado/alterarPerguntaSucesso.jsp";
 	//private CadastroPerguntaBC cadastro;
 
 	/**
