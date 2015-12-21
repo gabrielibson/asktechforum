@@ -69,7 +69,7 @@
 										Faça seu login <h:commandLink action="loginPage" value="Aqui"/>
 									</p>
 								</h:panelGroup>
-								<h:panelGroup>
+								<h:panelGroup rendered="#{loginMB.usuarioLogado.admin}">
 									<h:commandButton styleClass="submit" value="Voltar" action="#{userBean.chamarCadastroUsuario}"/>
 								</h:panelGroup>
 							</div>
