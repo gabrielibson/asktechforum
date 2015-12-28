@@ -28,7 +28,7 @@
 								<h:panelGroup rendered="#{loginMB.usuarioLogado != null }"> 
 									<h:outputText value="Olá "/>&nbsp;
 									<h:commandLink style="color: white" value="#{loginMB.usuarioLogado.nome }" 
-										action="#{userBean.exibirPerfilUsuario}">
+										action="#{userBean.exibirPerfilUsuarioLogado}">
 										<f:setPropertyActionListener value="#{loginMB.usuarioLogado}" target="#{userBean.usuarioSelecionado}"/>
 									</h:commandLink>
 									&nbsp;

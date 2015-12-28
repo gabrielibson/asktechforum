@@ -77,13 +77,14 @@ public class UsuarioBean implements Serializable{
 		this.setAlterado(false);
 		//int quantAdmin = this.fachada.fachadaConsultarQuantidadeAdmin(this.usuario);
 		boolean flag = true;
+		this.usuarioLogado = (Usuario) this.session.getAttribute("usuarioLogado");
 		
 		if(!fachada.fachadaVerificarEmail(usuario.getEmail(), this.usuarioSelecionado)) {
 			flag = fachada.fachadaAlterarUsuario(this.usuario);
 
 			if(flag){
 				this.alterado = true;
-				this.usuarioSelecionado = this.usuario;
+				this.setUsuarioSelecionado(this.usuario);
 				this.usuario = new Usuario();
 				return "sucessoCadastro";
 			}else{
@@ -127,7 +128,7 @@ public class UsuarioBean implements Serializable{
 	
 	public String chamarPesquisarUsuario(){
 		this.limpar();
-		return "pesquisarUsuarioPage";
+		return "pesquisarUsuariosPage";
 	}
 
 	public String pesquisarUsuario(){
@@ -201,6 +202,13 @@ public class UsuarioBean implements Serializable{
 			retorno = "perfilUsuarioPage"; 
 		}
 		return retorno;
+	}
+	
+	public String exibirPerfilUsuarioLogado(){
+		this.usuarioLogado = (Usuario) this.session.getAttribute("usuarioLogado");
+		this.usuarioSelecionado = this.fachada.fachadaConsultarUsuarioPorId(this.usuarioLogado.getIdUsuario());
+		this.tratarDataNascimento(usuarioSelecionado);
+		return "perfilUsurarioPage";
 	}
 
 	public void limpar(){
