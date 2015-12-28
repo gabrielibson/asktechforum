@@ -87,14 +87,19 @@ public class UsuarioBean implements Serializable{
 				this.usuario = new Usuario();
 				return "sucessoCadastro";
 			}else{
-				FacesContext.getCurrentInstance().addMessage("", 
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "msg_summay", "Não foi possível realizar alteração.Por favor, verifique os dados "
-								+ "preenchidos e tente novamente."));
+				
+				FacesMessage message = new FacesMessage("Não foi possível realizar alteração.Por favor, verifique os dados preenchidos e tente novamente. ");
+				message.setSeverity(FacesMessage.SEVERITY_ERROR);
+				FacesContext.getCurrentInstance().addMessage("messages", message);
+				
 				return "alterarUsuarioPage";
 			}
 		}else{
-			FacesContext.getCurrentInstance().addMessage("", 
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "msg_summay", "Este Email já está cadastrado no AskTechForum."));
+			
+			FacesMessage message = new FacesMessage("Este Email já está cadastrado no AskTechForum.");
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			FacesContext.getCurrentInstance().addMessage("messages", message);
+			
 			return "alterarUsuarioPage";
 		}
 
@@ -127,7 +132,7 @@ public class UsuarioBean implements Serializable{
 	
 	public String chamarPesquisarUsuario(){
 		this.limpar();
-		return "pesquisarUsuarioPage";
+		return "pesquisarUsuariosPage";
 	}
 
 	public String pesquisarUsuario(){
