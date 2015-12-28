@@ -22,13 +22,13 @@
 									<h:panelGroup>Nome* </h:panelGroup>
 									<br />
 									<h:inputText class="contact"
-										value="#{userBean.usuarioSelecionado.nome}" id="nome" />
+										value="#{userBean.usuario.nome}" id="nome" />
 								</p>
 								<p>
 									<h:panelGroup>Data de Nascimento </h:panelGroup>
 									<br />
 									<h:inputText class="contact"
-										value="#{userBean.usuarioSelecionado.dataString}"
+										value="#{userBean.usuario.dataString}"
 										id="dataNascimento" />
 									<span style="color: rgb(10, 122, 146); font-size: 12px;">(dd/mm/aaaa)</span>
 								</p>
@@ -36,20 +36,20 @@
 									<h:panelGroup>Email* </h:panelGroup>
 									<br />
 									<h:inputText class="contact"
-										value="#{userBean.usuarioSelecionado.email}" id="email" />
+										value="#{userBean.usuario.email}" id="email" />
 								</p>
 								<p>
 									<h:panelGroup>Localização </h:panelGroup>
 									<br />
 									<h:inputText class="contact"
-										value="#{userBean.usuarioSelecionado.localizacao}"
+										value="#{userBean.usuario.localizacao}"
 										id="localizacao" />
 								</p>
 								<p>
 									<h:panelGroup>Senha* </h:panelGroup>
 									<br />
 									<h:inputSecret maxlength="8" class="contact"
-										value="#{userBean.usuarioSelecionado.senha}" id="senha" />
+										value="#{userBean.usuario.senha}" id="senha" />
 <!-- 									<span style="color: rgb(10, 122, 146); font-size: 12px;">O -->
 <!-- 										campo 'Senha' deve conter no máximo 8 caracteres</span> -->
 								</p>
@@ -57,7 +57,7 @@
 									<h:panelGroup>Confirmar Senha* </h:panelGroup>
 									<br />
 									<h:inputSecret maxlength="8" class="contact"
-										value="#{userBean.usuarioSelecionado.confSenha}"
+										value="#{userBean.usuario.confSenha}"
 										id="confsenha" />
 									<span style="color: rgb(10, 122, 146); font-size: 12px;">Os
 										campos 'Senha' e 'Confirmar Senha' devem ser iguais</span>
@@ -65,7 +65,7 @@
 								<p>
 									<h:panelGroup rendered="${usuarioLogado.admin}">
 										<h:selectBooleanCheckbox style="width: 20px;"
-											value="${userBean.usuarioSelecionado.admin}" name="admin"
+											value="${userBean.usuario.admin}" name="admin"
 											id="admin" />
 										<label for="admin">Administrador</label>
 									</h:panelGroup>
