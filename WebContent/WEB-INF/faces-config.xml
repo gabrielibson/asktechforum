@@ -129,4 +129,18 @@
 			<redirect/>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/jsf/admin/perfilUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>alterarUsuario</from-outcome>
+			<to-view-id>/jsf/admin/alterarUsuario.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>perfilUsuarioPage</from-outcome>
+			<to-view-id>/jsf/admin/perfilUsuario.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

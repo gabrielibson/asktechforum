@@ -11,40 +11,40 @@
 <body>
 	<ui:composition template="/template/layout.xhtml">
 		<ui:define name="content">
-			<h:form prependId="false">
+		<h:form prependId="false">
 				<div id="site_content">
 					<div class="content">
-						<h1>Cadastro</h1>
+					<h1>Alterar dados</h1>
 						<h:panelGroup layout="block" styleClass="content_item" rendered="#{!userBean.cadastrado}">
 							<div style="width: 700px;" class="form_settings_cadastro">
 								<p>
 									<h:panelGroup>Nome* </h:panelGroup> <br /> 
-									<h:inputText class="contact" value="#{userBean.usuario.nome}" id="nome" />
+									<h:inputText class="contact" value="#{userBean.usuarioSelecionado.nome}" id="nome" />
 								</p>
 								<p>
 									<h:panelGroup>Data de Nascimento </h:panelGroup> <br /> 
-									<h:inputText class="contact" value="#{userBean.usuario.dataString}" id="dataNascimento" />
+									<h:inputText class="contact" value="#{userBean.usuarioSelecionado.dataString}" id="dataNascimento" />
 									<span
 										style="color: rgb(10, 122, 146); font-size: 12px;">(dd/mm/aaaa)</span>
 								</p>
 								<p>
 									<h:panelGroup>Email* </h:panelGroup> <br /> 
-									<h:inputText class="contact" value="#{userBean.usuario.email}" id="email" />
+									<h:inputText class="contact" value="#{userBean.usuarioSelecionado.email}" id="email" />
 								</p>
 								<p>
 									<h:panelGroup>Localização </h:panelGroup> <br /> 
-									<h:inputText class="contact" value="#{userBean.usuario.localizacao}" id="localizacao" />
+									<h:inputText class="contact" value="#{userBean.usuarioSelecionado.localizacao}" id="localizacao" />
 								</p>
 								<p>
 									<h:panelGroup>Senha* </h:panelGroup> <br /> 
-									<h:inputSecret maxlength="8" class="contact" value="#{userBean.usuario.senha}" id="senha" />
+									<h:inputSecret maxlength="8" class="contact" value="#{userBean.usuarioSelecionado.senha}" id="senha" />
 									<span
 										style="color: rgb(10, 122, 146); font-size: 12px;">O
 										campo 'Senha' deve conter no máximo 8 caracteres</span> 
 								</p>
 								<p>
 									<h:panelGroup>Confirmar Senha* </h:panelGroup> <br /> 
-									<h:inputSecret maxlength="8" class="contact" value="#{userBean.usuario.confSenha}" id="confsenha" />
+									<h:inputSecret maxlength="8" class="contact" value="#{userBean.usuarioSelecionado.confSenha}" id="confsenha" />
 									 <span
 										style="color: rgb(10, 122, 146); font-size: 12px;">Os
 										campos 'Senha' e 'Confirmar Senha' devem ser iguais</span>
@@ -56,16 +56,16 @@
 									<h:messages style="color: red"/>	
 								</p>
 
-								<h:commandButton styleClass="submit" value="Cadastrar" action="#{userBean.cadastrarUsuario}"/>
+								<h:commandButton styleClass="submit" value="Salvar" action="#{userBean.cadastrarUsuario}"/>
 								&nbsp;
-								<h:commandButton styleClass="submit" value="Voltar" action="indexPage"/>
+								<h:commandButton styleClass="submit" value="Voltar" action="#{userBean.exibirPerfilUsuario}"/>
 								<br /> <br /> <br />
 							</div>	
 						</h:panelGroup>
 						
 						<h:panelGroup layout="block" styleClass="content_item" rendered="#{userBean.cadastrado}">
 							<div style="width: 700px;" class="form_settings_cadastro">
-								<h2>Usuário cadastrado com sucesso!</h2>
+								<h2>Usuário alterado com sucesso!</h2>
 								<h:panelGroup rendered="#{!loginMB.usuarioLogado.admin}">
 									<p>
 										Faça seu login <h:commandLink action="loginPage" value="Aqui"/>
@@ -78,7 +78,7 @@
 						</h:panelGroup>
 					</div>
 				</div>
-			</h:form>
+		</h:form>
 		</ui:define>
 	</ui:composition>
 </body>

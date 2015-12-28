@@ -24,7 +24,6 @@ public class UsuarioBean implements Serializable{
 	private String senhaAtual;
 	private Fachada fachada;
 	private boolean cadastrado;
-	private String dataNascimentoStr;
 	private Usuario usuarioSelecionado;
 	private String tipoPesquisa;
 	private String msgErroTipoPesquisa;
@@ -68,7 +67,7 @@ public class UsuarioBean implements Serializable{
 	}
 	
 	public String alterarUsuario(){
-		return "";
+		return "alterarUsuario";
 	}
 	
 	public String excluirUsuario(){
@@ -181,14 +180,6 @@ public class UsuarioBean implements Serializable{
 
 	public void setCadastrado(boolean cadastrado) {
 		this.cadastrado = cadastrado;
-	}
-
-	public String getDataNascimentoStr() {
-		return dataNascimentoStr;
-	}
-
-	public void setDataNascimentoStr(String dataNascimentoStr) {
-		this.dataNascimentoStr = dataNascimentoStr;
 	}
 
 	public Usuario getUsuarioSelecionado() {

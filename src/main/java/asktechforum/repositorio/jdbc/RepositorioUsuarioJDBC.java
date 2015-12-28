@@ -245,9 +245,9 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
 			preparedStatement = con
-					.prepareStatement("select * from usuario where nome=?");
+					.prepareStatement("select * from usuario where nome like ?");
 			
-			preparedStatement.setString(1, nome);
+			preparedStatement.setString(1, "%"+nome+"%");
 			rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
