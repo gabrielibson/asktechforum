@@ -49,6 +49,9 @@ public class PerguntaBean {
 	
 	public String consultarPerguntaPorTag(){
 		this.listPerguntas = this.fachada.fachadaConsultarPerguntaPorTag(this.tag);
+		for (ResultConsultarPergunta resultConsultarPergunta : listPerguntas) {
+			this.tratarData(resultConsultarPergunta);
+		}
 		this.tag = this.tag.toUpperCase();
 		return "/jsf/consultaPerguntasPorTag";
 	}
@@ -56,7 +59,17 @@ public class PerguntaBean {
 	public String listarTodasPerguntas(){
 		this.limparConsultas();
 		this.listPerguntas = this.fachada.fachadaConsultarPerguntaPorTag("all");
+		for (ResultConsultarPergunta resultConsultarPergunta : listPerguntas) {
+			this.tratarData(resultConsultarPergunta);
+		}
+		
 		return "indexPage";
+	}
+	
+	private void tratarData(Pergunta pergunta){
+		if(pergunta.getData()!= null) {
+			pergunta.setStrData(fachada.fachadaFormatarDataSQL(pergunta.getStrData().toString()));
+		}
 	}
 	
 	public String cadastrarPergunta(){

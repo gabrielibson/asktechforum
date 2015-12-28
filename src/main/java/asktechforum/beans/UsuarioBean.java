@@ -219,7 +219,7 @@ public class UsuarioBean implements Serializable{
 		this.usuarioLogado = (Usuario) this.session.getAttribute("usuarioLogado");
 		this.usuarioSelecionado = this.fachada.fachadaConsultarUsuarioPorId(this.usuarioLogado.getIdUsuario());
 		this.tratarDataNascimento(usuarioSelecionado);
-		return "perfilUsurarioPage";
+		return "perfilUsuarioPage";
 	}
 
 	public void limpar(){
