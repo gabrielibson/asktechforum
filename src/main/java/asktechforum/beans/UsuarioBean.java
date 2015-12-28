@@ -78,8 +78,6 @@ public class UsuarioBean implements Serializable{
 		//int quantAdmin = this.fachada.fachadaConsultarQuantidadeAdmin(this.usuario);
 		boolean flag = true;
 		
-		
-		
 		if(!fachada.fachadaVerificarEmail(usuario.getEmail(), this.usuarioSelecionado)) {
 			flag = fachada.fachadaAlterarUsuario(this.usuario);
 
@@ -125,6 +123,11 @@ public class UsuarioBean implements Serializable{
 	public String chamarCadastroUsuario(){
 		limpar();
 		return "cadastroUsuarioPage";
+	}
+	
+	public String chamarPesquisarUsuario(){
+		this.limpar();
+		return "pesquisarUsuarioPage";
 	}
 
 	public String pesquisarUsuario(){

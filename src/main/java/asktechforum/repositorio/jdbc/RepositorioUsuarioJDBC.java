@@ -28,7 +28,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("update Usuario set nome=?,dt_nasc=?,admin=?,email=?,localizacao=?,senha=? where idUsuario=?");
+                    .prepareStatement("update usuario set nome=?,dt_nasc=?,admin=?,email=?,localizacao=?,senha=? where idUsuario=?");
 
             preparedStatement.setString(1, usuario.getNome());
             preparedStatement.setDate(2, usuario.getDataNascimento());
