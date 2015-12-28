@@ -8,6 +8,7 @@ import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import asktechforum.dominio.Pergunta;
 //import asktechforum.dominio.Pergunta;
 import asktechforum.dominio.Resposta;
 import asktechforum.dominio.ResultConsultarPergunta;
@@ -38,9 +39,17 @@ public class RespostaBean {
 	
 	public String consultarRepostasPergunta(){
 		this.listRespostas = fachada.fachadaConsultarRespostaPorPergunta(pergunta.getIdPergunta());
+		for (Resposta resposta : listRespostas) {
+			this.tratarData(resposta);
+		}
 		return "consultarRespostas";
 	}
 	
+	private void tratarData(Resposta resposta){
+		if(resposta.getData()!= null) {
+			resposta.setStrData(fachada.fachadaFormatarDataSQL(resposta.getStrData().toString()));
+		}
+	}
 	public String responderPergunta(){
 		this.limpar();
 		return "responderPerguntaPage";

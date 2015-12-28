@@ -47,7 +47,8 @@
 									<p>
 										<h:outputText value="#{resposta.descricao }" />
 										<h:panelGroup style="float: right; font-weight:bold;"
-											rendered="#{loginMB.usuarioLogado != null }">
+										rendered="false">
+<!-- 											rendered="#{loginMB.usuarioLogado != null }"> -->
 											<h:commandLink action="#{respostaBean.descurtirResposta }"
 												rendered="#{!respostaBean.curtiu }">
 												<h:graphicImage style="width:40px;"
@@ -71,9 +72,9 @@
 											value="Por: #{resposta.nomeUsuario }" />
 										<br />
 										<h:outputText style="font-size: 9px; position: right;"
-											value="Em: #{resposta.data } " />
+											value="Em: #{resposta.strData } " />
 										<h:outputText style="font-size: 9px; position: right;"
-											value="às #{resposta.hora }" />
+											value=" às #{resposta.hora }" />
 									</p>
 									<p>
 										<h:commandLink styleClass="submitMenor" value="Alterar" style="margin-right: 10px;"
