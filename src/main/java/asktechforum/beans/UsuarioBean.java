@@ -26,11 +26,14 @@ public class UsuarioBean implements Serializable{
 	private Fachada fachada;
 	private boolean cadastrado;
 	private boolean alterado;
+	private boolean excluido;
+	private boolean clicouExcluir;
 	private Usuario usuarioSelecionado;
 	private Usuario usuarioLogado;
 	private String tipoPesquisa;
 	private String msgErroTipoPesquisa;
 	private String msgErroUsuarioNaoSelecionado;
+	private boolean exibeErroExclusao;
 	private boolean resultadoVazio;
 	private String nomePesquisa;
 	private String emailPesquisa;
@@ -113,7 +116,22 @@ public class UsuarioBean implements Serializable{
 	}
 
 	public String excluirUsuario(){
-		return "";
+		this.usuarioLogado = (Usuario) this.session.getAttribute("usuarioLogado");
+
+		if(this.fachada.fachadaConsultarQuantidadeAdmin(usuarioSelecionado) > 1){
+			this.fachada.fachadaDeletarUsuarioPorId(this.usuarioSelecionado.getIdUsuario());
+			
+			if(this.usuarioSelecionado != null && usuarioLogado != null) {
+				if(this.usuarioSelecionado.getIdUsuario() == usuarioLogado.getIdUsuario()) {
+					session.invalidate();
+				}
+			}
+			this.excluido = true;
+		}else{
+			this.exibeErroExclusao = true; 
+		}
+				
+		return "perfilUsuarioPage";
 	}
 	
 	public String chamarAlterarUsuario(){
@@ -140,6 +158,17 @@ public class UsuarioBean implements Serializable{
 	public String chamarPesquisarUsuario(){
 		this.limpar();
 		return "pesquisarUsuariosPage";
+	}
+	
+	public String chamarExcluirUsuario(){
+		this.limpar();
+		this.setClicouExcluir(true);
+		return "perfilUsuarioPage";
+	}
+	
+	public String cancelarExcluir(){
+		this.setClicouExcluir(false);
+		return "perfilUsuarioPage";
 	}
 
 	public String pesquisarUsuario(){
@@ -202,7 +231,8 @@ public class UsuarioBean implements Serializable{
 	}
 
 	public String exibirPerfilUsuario(){
-
+		this.exibeErroExclusao = false;
+		this.excluido = false;
 		String retorno = "";
 		if(this.usuarioSelecionado == null){
 			this.msgErroUsuarioNaoSelecionado = "* Selecione um usuário para ver o perfil.";
@@ -216,20 +246,26 @@ public class UsuarioBean implements Serializable{
 	}
 	
 	public String exibirPerfilUsuarioLogado(){
+		this.exibeErroExclusao = false;
+		this.excluido = false;
 		this.usuarioLogado = (Usuario) this.session.getAttribute("usuarioLogado");
 		this.usuarioSelecionado = this.fachada.fachadaConsultarUsuarioPorId(this.usuarioLogado.getIdUsuario());
 		this.tratarDataNascimento(usuarioSelecionado);
-		return "perfilUsurarioPage";
+		return "perfilUsuarioPage";
 	}
 
 	public void limpar(){
 		this.msgErroTipoPesquisa = "";
 		this.msgErroUsuarioNaoSelecionado = "";
+		this.exibeErroExclusao = false;
 		this.usuario = new Usuario();
 		this.usuarios = new ArrayList<>();
 		this.cadastrado = false;
 		this.alterado = false;
+		this.excluido = false;
+		this.clicouExcluir = false;
 		this.resultadoVazio = false;
+		this.setExcluido(false);
 	}
 
 	public Usuario getUsuario() {
@@ -343,7 +379,31 @@ public class UsuarioBean implements Serializable{
 		this.emailPesquisa = emailPesquisa;
 	}
 
+	public boolean isExcluido() {
+		return excluido;
+	}
 
+	public void setExcluido(boolean excluido) {
+		this.excluido = excluido;
+	}
+
+	public boolean isClicouExcluir() {
+		return clicouExcluir;
+	}
+
+	public void setClicouExcluir(boolean clicouExcluir) {
+		this.clicouExcluir = clicouExcluir;
+	}
+
+	public boolean isExibeErroExclusao() {
+		return exibeErroExclusao;
+	}
+
+	public void setExibeErroExclusao(boolean exibeErroExclusao) {
+		this.exibeErroExclusao = exibeErroExclusao;
+	}
+
+	
 	//TO DO:
 	// Metodos: Validar, Consultar, LimpaCampos
 

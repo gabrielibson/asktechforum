@@ -54,7 +54,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("update Usuario set admin=? where idUsuario=?");
+                    .prepareStatement("update usuario set admin=? where idUsuario=?");
 
             preparedStatement.setBoolean(1, usuario.isAdmin());
             preparedStatement.setInt(2, usuario.getIdUsuario());
@@ -100,7 +100,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("delete from Usuario where email=?");
+                    .prepareStatement("delete from usuario where email=?");
             
             preparedStatement.setString(1, email);
             preparedStatement.executeUpdate();
@@ -119,7 +119,7 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 		
 		try {
             preparedStatement = con
-                    .prepareStatement("delete from Usuario where idUsuario=?");
+                    .prepareStatement("delete from usuario where idUsuario=?");
             
             preparedStatement.setInt(1, idUsuario);
             preparedStatement.executeUpdate();
