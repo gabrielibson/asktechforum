@@ -133,7 +133,7 @@
 	<navigation-rule>
 		<from-view-id>/jsf/admin/perfilUsuario.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>alterarUsuario</from-outcome>
+			<from-outcome>alterarUsuarioPage</from-outcome>
 			<to-view-id>/jsf/admin/alterarUsuario.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>

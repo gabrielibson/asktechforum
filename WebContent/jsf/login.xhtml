@@ -23,12 +23,13 @@
 									<h:message for="login" style="font-size: 12px; color: red;"></h:message>
 								</p>
 								<p>
-									<h:outputLabel>Senha</h:outputLabel>
+									<h:outputLabel>Senha </h:outputLabel>
 									<h:inputSecret styleClass="contact" id="senha" label="senha" value="#{loginMB.senha }"/> 
-									<h:commandLink action="#{loginMB.esqueciSenha}" style="font-size: 10px">Esqueci minha senha</h:commandLink>
 									<h:message for="senha" style="font-size: 12px; color: red;"></h:message>
 								</p>
-
+								<p>
+									<h:commandLink action="#{loginMB.esqueciSenha}" style="font-size: 10px">Esqueci minha senha</h:commandLink>
+								</p>
 								<p>
 									<h:commandButton styleClass="submit" name="btn_entrar" value="Entrar" action="#{loginMB.logar }"/> 
 									&nbsp;

@@ -76,7 +76,7 @@
 								<p>
 									<h:commandButton styleClass="submit" value="Editar Perfil"
 										rendered="#{userBean.usuarioSelecionado.idUsuario == loginMB.usuarioLogado.idUsuario 
-											or loginMB.usuarioLogado.admin}" action="#{userBean.alterarUsuario}"/>
+											or loginMB.usuarioLogado.admin}" action="#{userBean.chamarAlterarUsuario}"/>
 									&nbsp;
 									<h:commandButton styleClass="submit" value="Excluir Perfil"
 										rendered="#{userBean.usuarioSelecionado.idUsuario == loginMB.usuarioLogado.idUsuario 

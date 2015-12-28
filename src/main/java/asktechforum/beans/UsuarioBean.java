@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import asktechforum.dominio.Usuario;
 import asktechforum.fachada.Fachada;
@@ -16,7 +17,7 @@ import asktechforum.fachada.Fachada;
 @SessionScoped
 public class UsuarioBean implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
+
 	private Usuario usuario;
 	private List<Usuario> usuarios;
 	private String confSenha;
@@ -24,19 +25,24 @@ public class UsuarioBean implements Serializable{
 	private String senhaAtual;
 	private Fachada fachada;
 	private boolean cadastrado;
+	private boolean alterado;
 	private Usuario usuarioSelecionado;
+	private Usuario usuarioLogado;
 	private String tipoPesquisa;
 	private String msgErroTipoPesquisa;
 	private String msgErroUsuarioNaoSelecionado;
 	private boolean resultadoVazio;
 	private String nomePesquisa;
 	private String emailPesquisa;
-	
+	private HttpSession session;
+
 	public UsuarioBean() {
 		this.limpar();
 		this.fachada = Fachada.getInstance();
+		this.session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		this.setUsuarioLogado((Usuario) session.getAttribute("usuarioLogado"));
 	}
-	
+
 	public String cadastrarUsuario(){
 		this.fachada = Fachada.getInstance();
 		this.cadastrado = false;
@@ -49,9 +55,9 @@ public class UsuarioBean implements Serializable{
 			}else {
 				this.usuario.setAdmin(false);
 			}
-			
+
 			flag = fachada.fachadaAdicionarUsuario(this.usuario);
-			
+
 			if(flag){
 				this.cadastrado = true;
 				this.usuario = new Usuario();
@@ -65,28 +71,60 @@ public class UsuarioBean implements Serializable{
 			return "erroCadastro";
 		}
 	}
-	
+
 	public String alterarUsuario(){
-		return "alterarUsuario";
+		this.fachada = Fachada.getInstance();
+		this.setAlterado(false);
+		//int quantAdmin = this.fachada.fachadaConsultarQuantidadeAdmin(this.usuario);
+		boolean flag = true;
+		
+		if(!fachada.fachadaVerificarEmail(usuarioSelecionado.getEmail(), this.usuarioLogado)) {
+			flag = fachada.fachadaAlterarUsuario(this.usuarioSelecionado);
+
+			if(flag){
+				this.alterado = true;
+				this.usuario = new Usuario();
+				return "sucessoCadastro";
+			}else{
+				FacesContext.getCurrentInstance().addMessage("", 
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "msg_summay", "Não foi possível realizar alteração.Por favor, verifique os dados "
+								+ "preenchidos e tente novamente."));
+				return "alterarUsuarioPage";
+			}
+		}else{
+			FacesContext.getCurrentInstance().addMessage("", 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "msg_summay", "Este Email já está cadastrado no AskTechForum."));
+			return "alterarUsuarioPage";
+		}
+
 	}
-	
+
 	public String excluirUsuario(){
 		return "";
+	}
+	
+	public String chamarAlterarUsuario(){
+		this.setAlterado(false);
+		return "alterarUsuarioPage";
 	}
 	
 	public String chamarCadastroUsuario(){
 		limpar();
 		return "cadastroUsuarioPage";
 	}
-	
+
 	public String pesquisarUsuario(){
 		this.limpar();
-		
+
 		if(this.tipoPesquisa != null && this.tipoPesquisa.trim() != "") {
 			switch (this.tipoPesquisa) {
 			case "nome":
 				if(this.nomePesquisa != null && this.nomePesquisa.trim() != "") {
 					this.usuarios.addAll(fachada.fachadaConsultarUsuarioPorNome(this.nomePesquisa));
+					//Fazer tratamento data de nascimento
+					for (Usuario usuario : usuarios) {
+						tratarDataNascimento(usuario);
+					}
 				}else{
 					this.msgErroTipoPesquisa = "Informe o nome do usuário.";
 				}
@@ -96,7 +134,9 @@ public class UsuarioBean implements Serializable{
 					Usuario usuario = fachada.fachadaConsultarUsuarioPorEmail(this.emailPesquisa);
 					if(usuario != null) {
 						if(usuario.getIdUsuario() != 0) {
-							this.usuarios.add(fachada.fachadaConsultarUsuarioPorEmail(usuario.getEmail()));
+							//Fazer tratamento data de nascimento
+							tratarDataNascimento(usuario);
+							this.usuarios.add(usuario);							
 						}
 					}
 				}else{
@@ -105,6 +145,10 @@ public class UsuarioBean implements Serializable{
 				break;
 			case "todos":
 				this.usuarios.addAll(fachada.fachadaConsultarTodosUsuarios());
+				//Fazer tratamento data de nascimento
+				for (Usuario usuario : usuarios) {
+					tratarDataNascimento(usuario);
+				}
 				break;
 			case "":
 				break;
@@ -114,35 +158,44 @@ public class UsuarioBean implements Serializable{
 		}else{
 			this.msgErroTipoPesquisa = "* Selecione uma das opções acima para pesquisar.";
 		}
-		
+
 		if(this.msgErroTipoPesquisa.equals("") && this.usuarios.isEmpty()){
 			this.resultadoVazio = true;
 		}
 
 		return "pesquisarUsuariosPage";
 	}
-	
+
+	private void tratarDataNascimento(Usuario usuario){
+		if(usuario.getDataNascimento() != null) {
+			usuario.setDataString(fachada.fachadaFormatarDataSQL(usuario.getDataNascimento().toString()));
+		}
+	}
+
 	public String exibirPerfilUsuario(){
-		
+
 		String retorno = "";
 		if(this.usuarioSelecionado == null){
 			this.msgErroUsuarioNaoSelecionado = "* Selecione um usuário para ver o perfil.";
 			retorno = "pesquisarUsuariosPage";
 		}else{
+			//Fazer tratamento data de nascimento
+			tratarDataNascimento(usuarioSelecionado);
 			retorno = "perfilUsuarioPage"; 
 		}
 		return retorno;
 	}
-	
+
 	public void limpar(){
 		this.msgErroTipoPesquisa = "";
 		this.msgErroUsuarioNaoSelecionado = "";
 		this.usuario = new Usuario();
 		this.usuarios = new ArrayList<>();
 		this.cadastrado = false;
+		this.alterado = false;
 		this.resultadoVazio = false;
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -182,12 +235,28 @@ public class UsuarioBean implements Serializable{
 		this.cadastrado = cadastrado;
 	}
 
+	public boolean isAlterado() {
+		return alterado;
+	}
+
+	public void setAlterado(boolean alterado) {
+		this.alterado = alterado;
+	}
+
 	public Usuario getUsuarioSelecionado() {
 		return usuarioSelecionado;
 	}
 
 	public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
 		this.usuarioSelecionado = usuarioSelecionado;
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 
 	public String getTipoPesquisa() {
@@ -237,8 +306,8 @@ public class UsuarioBean implements Serializable{
 	public void setEmailPesquisa(String emailPesquisa) {
 		this.emailPesquisa = emailPesquisa;
 	}
-	
-	
+
+
 	//TO DO:
 	// Metodos: Validar, Consultar, LimpaCampos
 

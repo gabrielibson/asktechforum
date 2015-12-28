@@ -49,7 +49,14 @@
 										style="color: rgb(10, 122, 146); font-size: 12px;">Os
 										campos 'Senha' e 'Confirmar Senha' devem ser iguais</span>
 								</p>
-								<br />
+								<p>
+									<h:panelGroup rendered="${usuarioLogado.admin}">
+										<h:selectBooleanCheckbox style="width: 20px;"
+											value="${userBean.usuario.admin}" name="admin"
+											id="admin" />
+										<label for="admin">Administrador</label>
+									</h:panelGroup>
+								</p>
 								<p style="color: red; font-size: 12px;">Os campos com * são
 									obrigatórios, preencha-os com dados válidos
 									
