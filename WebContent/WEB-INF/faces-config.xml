@@ -54,8 +54,13 @@
     		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
     		<redirect/>
     	</navigation-case>
-    </navigation-rule>
-    
+    	
+    	<navigation-case>
+    		<from-outcome>cadastroUsuarioPage</from-outcome>
+    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
+    		<redirect/>
+    	</navigation-case>
+    </navigation-rule>    
     <navigation-rule>
     	<from-view-id>/jsf/esqueciMinhaSenha.xhtml</from-view-id>
     	<navigation-case>

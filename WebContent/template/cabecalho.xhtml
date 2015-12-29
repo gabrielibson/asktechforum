@@ -23,7 +23,9 @@
 							<h2>
 								<h:commandLink value="Entre" action="loginPage" rendered="#{loginMB.usuarioLogado == null }"/>
 								&nbsp;
-								<h:commandLink value="Cadastre-se" action="cadastroUsuarioPage" rendered="#{loginMB.usuarioLogado == null }"/>
+								<h:commandLink value="Cadastre-se" action="${userBean.chamarCadastroUsuario}" rendered="#{loginMB.usuarioLogado == null }"/>
+<!-- 								 action="cadastroUsuarioPage"  -->
+								 
 								
 								<h:panelGroup rendered="#{loginMB.usuarioLogado != null }"> 
 									<h:outputText value="Olá "/>&nbsp;
