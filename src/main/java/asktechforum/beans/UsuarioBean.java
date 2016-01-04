@@ -119,7 +119,8 @@ public class UsuarioBean implements Serializable{
 		this.usuarioLogado = (Usuario) this.session.getAttribute("usuarioLogado");
 
 		if(this.fachada.fachadaConsultarQuantidadeAdmin(usuarioSelecionado) > 1){
-			this.fachada.fachadaDeletarUsuarioPorId(this.usuarioSelecionado.getIdUsuario());
+		//	this.fachada.fachadaDeletarUsuarioPorId(this.usuarioSelecionado.getIdUsuario());
+			this.fachada.fachadaDeletarUsuario(this.usuarioSelecionado.getEmail());
 			
 			if(this.usuarioSelecionado != null && usuarioLogado != null) {
 				if(this.usuarioSelecionado.getIdUsuario() == usuarioLogado.getIdUsuario()) {
