@@ -152,14 +152,20 @@ public class RespostaBean {
 	}
 	
 	public String curtirResposta(){
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().
+				getExternalContext().getSession(true);
+		Usuario usuarioLogado = (Usuario)session.getAttribute("usuarioLogado");
 		this.fachada.fachadaAdicionarVotoResposta(this.resposta.getIdResposta());
-		this.fachada.fachadaAdicionarVotoUsuario(this.resposta.getIdUsuario(), this.resposta.getIdResposta());
+		this.fachada.fachadaAdicionarVotoUsuario(usuarioLogado.getIdUsuario(), this.resposta.getIdResposta());
 		return this.consultarRepostasPergunta();
 	}
 	
 	public String descurtirResposta(){
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().
+				getExternalContext().getSession(true);
+		Usuario usuarioLogado = (Usuario)session.getAttribute("usuarioLogado");
 		fachada.fachadaRemoverVotoResposta(this.resposta.getIdResposta());
-		fachada.fachadaDeletarUsuarioVoto(this.resposta.getIdUsuario(), this.resposta.getIdResposta());
+		fachada.fachadaDeletarUsuarioVoto(usuarioLogado.getIdUsuario(), this.resposta.getIdResposta());
 		return this.consultarRepostasPergunta();
 	}
 	
