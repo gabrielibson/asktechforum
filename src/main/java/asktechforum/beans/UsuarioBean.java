@@ -222,7 +222,11 @@ public class UsuarioBean implements Serializable{
 		if(this.msgErroTipoPesquisa.equals("") && this.usuarios.isEmpty()){
 			this.resultadoVazio = true;
 		}
-
+		
+		this.nomePesquisa = "";
+		this.emailPesquisa = "";
+		this.tipoPesquisa="";
+		
 		return "pesquisarUsuariosPage";
 	}
 
@@ -268,6 +272,7 @@ public class UsuarioBean implements Serializable{
 		this.clicouExcluir = false;
 		this.resultadoVazio = false;
 		this.setExcluido(false);
+				
 	}
 
 	public Usuario getUsuario() {
