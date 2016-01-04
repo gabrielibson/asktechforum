@@ -14,7 +14,7 @@
 			<h:form id="formConsultarRespostaPorPergunta" prependId="false">
 				<div id="site_content">
 					<h:panelGroup id="panelRespostas"
-						rendered="#{!respostaBean.sucessoExlusaoResposta}">
+						rendered="#{!respostaBean.sucessoExclusaoResposta and !respostaBean.sucessoExclusaoPergunta}">
 						<div style="width: 1000px;" class="content">
 							<h1>
 								<h:outputText value="#{respostaBean.pergunta.titulo }" />
@@ -108,8 +108,8 @@
 						</div>
 					</h:panelGroup>
 
-					<h:panelGroup id="panelSucessoExlcuisaoResposta"
-						rendered="#{respostaBean.sucessoExlusaoResposta}">
+					<h:panelGroup id="panelSucessoExclusaoResposta"
+						rendered="#{respostaBean.sucessoExclusaoResposta}">
 						<div class="content">
 							<div class="content_item">
 								<div class="form_settings_perfil">
@@ -118,6 +118,24 @@
 										<p>
 											<h:commandButton value="Voltar"
 												action="#{respostaBean.voltarConsultaRespostaPage}"
+												class="submit" />
+										</p>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</h:panelGroup>
+					
+					<h:panelGroup id="panelSucessoExlcusaoPergunta"
+						rendered="#{respostaBean.sucessoExclusaoPergunta}">
+						<div class="content">
+							<div class="content_item">
+								<div class="form_settings_perfil">
+									<h:form>
+										<h2>Pergunta excluída com sucesso!</h2>
+										<p>
+											<h:commandButton value="Voltar"
+												action="#{respostaBean.consultarPerguntasPage}"
 												class="submit" />
 										</p>
 									</h:form>

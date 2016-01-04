@@ -27,9 +27,11 @@ public class RespostaBean {
 	private HtmlDataTable dataTableListRespostas;
 	private Boolean sucessoCadastro;
 	private Boolean sucessoAlteracao;
-	private Boolean sucessoExlusaoResposta;
+	private boolean sucessoExclusaoResposta;
+	private boolean sucessoExclusaoPergunta;
 	private String autor;
 	private String msgErro;
+	private PerguntaBean perguntaBean;
 	
 
 	public RespostaBean(){
@@ -37,7 +39,8 @@ public class RespostaBean {
 		this.listRespostas = new ArrayList<Resposta>();
 		this.sucessoCadastro = false;
 		this.sucessoAlteracao = false;
-		this.sucessoExlusaoResposta = false;
+		this.sucessoExclusaoResposta = false;
+		this.sucessoExclusaoPergunta = false;
 		this.msgErro = "";
 	}
 	
@@ -48,7 +51,7 @@ public class RespostaBean {
 		}
 		return "consultarRespostas";
 	}
-	
+
 	private void tratarData(Resposta resposta){
 		if(resposta.getData()!= null) {
 			resposta.setStrData(fachada.fachadaFormatarDataSQL(resposta.getStrData().toString()));
@@ -107,8 +110,11 @@ public class RespostaBean {
 	}
 	
 	public String excluirPergunta(){
-		
-		return "";
+		this.fachada.fachadaDeletarPergunta(this.pergunta.getIdPergunta());
+		this.sucessoExclusaoPergunta = true;		
+		this.perguntaBean = new PerguntaBean();
+		perguntaBean.listarTodasPerguntas();
+		return "consultarRespostas";
 	}
 	
 	public String alterarRespostaPage(){
@@ -116,8 +122,12 @@ public class RespostaBean {
 	}
 	
 	public String voltarConsultaRespostaPage(){
-		this.sucessoExlusaoResposta = false;
+		this.sucessoExclusaoResposta = false;
 		return this.consultarRepostasPergunta();
+	}
+	
+	public String consultarPerguntasPage(){
+		return "consultarPerguntas";
 	}
 	
 	public String consultarRespostaPage(){
@@ -126,7 +136,7 @@ public class RespostaBean {
 	
 	public String excluirResposta(){
 		this.fachada.fachadaDeletarResposta(this.resposta.getIdResposta());	
-		this.sucessoExlusaoResposta = true;
+		this.sucessoExclusaoResposta = true;
 		return "consultarRespostas";
 	}
 	
@@ -154,7 +164,8 @@ public class RespostaBean {
 		this.resposta = new Resposta();
 		this.sucessoCadastro = false;
 		this.sucessoAlteracao =  false;
-		this.sucessoExlusaoResposta = false;
+		this.sucessoExclusaoResposta = false;
+		this.sucessoExclusaoPergunta = false;
 		this.msgErro = "";
 	}
 	
@@ -226,7 +237,7 @@ public class RespostaBean {
 		this.dataTableListRespostas = dataTableListRespostas;
 	}
 
-	public Boolean getSucessoAlteracao() {
+	public Boolean isSucessoAlteracao() {
 		return sucessoAlteracao;
 	}
 
@@ -234,12 +245,28 @@ public class RespostaBean {
 		this.sucessoAlteracao = sucessoAlteracao;
 	}
 
-	public Boolean getSucessoExlusaoResposta() {
-		return sucessoExlusaoResposta;
+	public boolean isSucessoExclusaoResposta() {
+		return sucessoExclusaoResposta;
 	}
 
-	public void setSucessoExlusaoResposta(Boolean sucessoExlusaoResposta) {
-		this.sucessoExlusaoResposta = sucessoExlusaoResposta;
+	public void setSucessoExclusaoResposta(boolean sucessoExlusaoResposta) {
+		this.sucessoExclusaoResposta = sucessoExlusaoResposta;
+	}
+
+	public boolean isSucessoExclusaoPergunta() {
+		return sucessoExclusaoPergunta;
+	}
+
+	public void setSucessoExclusaoPergunta(boolean sucessoExclusaoPergunta) {
+		this.sucessoExclusaoPergunta = sucessoExclusaoPergunta;
+	}
+
+	public PerguntaBean getPerguntaBean() {
+		return perguntaBean;
+	}
+
+	public void setPerguntaBean(PerguntaBean perguntaBean) {
+		this.perguntaBean = perguntaBean;
 	}
 	
 	
