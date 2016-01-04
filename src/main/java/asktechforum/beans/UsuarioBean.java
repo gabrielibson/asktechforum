@@ -182,7 +182,7 @@ public class UsuarioBean implements Serializable{
 					this.usuarios.addAll(fachada.fachadaConsultarUsuarioPorNome(this.nomePesquisa));
 					//Fazer tratamento data de nascimento
 					for (Usuario usuario : usuarios) {
-						tratarDataNascimento(usuario);
+						this.tratarDataNascimento(usuario);
 					}
 				}else{
 					this.msgErroTipoPesquisa = "Informe o nome do usuário.";
@@ -195,7 +195,8 @@ public class UsuarioBean implements Serializable{
 						if(usuario.getIdUsuario() != 0) {
 							//Fazer tratamento data de nascimento
 							tratarDataNascimento(usuario);
-							this.usuarios.add(usuario);							
+							this.usuarios.add(usuario);		
+							
 						}
 					}
 				}else{
@@ -206,7 +207,7 @@ public class UsuarioBean implements Serializable{
 				this.usuarios.addAll(fachada.fachadaConsultarTodosUsuarios());
 				//Fazer tratamento data de nascimento
 				for (Usuario usuario : usuarios) {
-					tratarDataNascimento(usuario);
+					this.tratarDataNascimento(usuario);
 				}
 				break;
 			case "":
@@ -230,7 +231,7 @@ public class UsuarioBean implements Serializable{
 			usuario.setDataString(fachada.fachadaFormatarDataSQL(usuario.getDataNascimento().toString()));
 		}
 	}
-
+	
 	public String exibirPerfilUsuario(){
 		this.exibeErroExclusao = false;
 		this.excluido = false;

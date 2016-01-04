@@ -108,7 +108,8 @@ public class UsuarioBC {
 			
 			if(perguntas != null || respostas != null) {
 				if(perguntas.isEmpty() != true || respostas.isEmpty() != true) {
-					usuarioExcluido.setNome("Usuário Excluído");
+					//usuarioExcluido.setNome("Usuário Excluído");
+					usuarioExcluido.setNome(usuario.getNome());
 					usuarioExcluido.setDataString("");
 					usuarioExcluido.setAdmin(false);
 					usuarioExcluido.setEmail("usuarioExcluido@" + numeroRandomico + ".com");

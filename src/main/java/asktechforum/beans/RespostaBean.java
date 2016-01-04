@@ -77,6 +77,7 @@ public class RespostaBean {
 				&& !retorno.equals("cadastroSucesso")) {
 			this.msgErro = retorno;
 		} else {
+			this.fachada.fachadaNotificarContribuintesPerg(resposta.getIdPergunta(), resposta.getIdUsuario());
 			this.sucessoCadastro = true;
 		}
 		

@@ -216,14 +216,17 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 			rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
-				usuario = new Usuario();
-				usuario.setIdUsuario(rs.getInt("idUsuario"));
-				usuario.setNome(rs.getString("nome"));
-				usuario.setDataNascimento(rs.getDate("dt_nasc"));
-				usuario.setEmail(rs.getString("email"));
-				usuario.setLocalizacao(rs.getString("localizacao"));
-				usuario.setAdmin(rs.getBoolean("admin"));
-				usuario.setSenha(rs.getString("senha"));
+				if(!rs.getString("email").contains("Excluido")){
+
+					usuario = new Usuario();
+					usuario.setIdUsuario(rs.getInt("idUsuario"));
+					usuario.setNome(rs.getString("nome"));
+					usuario.setDataNascimento(rs.getDate("dt_nasc"));
+					usuario.setEmail(rs.getString("email"));
+					usuario.setLocalizacao(rs.getString("localizacao"));
+					usuario.setAdmin(rs.getBoolean("admin"));
+					usuario.setSenha(rs.getString("senha"));
+				}
 			}
 			
 		} catch (SQLException e) {
@@ -259,7 +262,10 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 				usuario.setLocalizacao(rs.getString("localizacao"));
 				usuario.setAdmin(rs.getBoolean("admin"));
 				usuario.setSenha(rs.getString("senha"));
-				usuarios.add(usuario);
+				
+				if(!usuario.getEmail().contains("Excluido")){
+					usuarios.add(usuario);
+				}
 			}
 			
 		} catch (SQLException e) {
@@ -292,7 +298,11 @@ public class RepositorioUsuarioJDBC  implements RepositorioUsuario{
 				usuario.setLocalizacao(rs.getString("localizacao"));
 				usuario.setAdmin(rs.getBoolean("admin"));
 				usuario.setSenha(rs.getString("senha"));
-            	usuarios.add(usuario);
+				
+				if(!usuario.getEmail().contains("Excluido")){
+					usuarios.add(usuario);
+				}
+            	
             }
             
         } catch (SQLException e) {
