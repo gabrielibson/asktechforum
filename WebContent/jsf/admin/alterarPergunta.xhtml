@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<h:form prependId="false">
+				<div id="site_content">
+					<div class="content">
+						<h:panelGroup id="panelCadastro" rendered="#{!perguntaBean.perguntaAlterada }">
+							<h1>Altere a sua pergunta</h1>
+							<div class="content_item">
+								<div style="height: 500px; width: 300px;"
+									class="form_settings_cadastro">
+									<p>
+										<h:panelGroup>Pergunta*</h:panelGroup>
+										<h:inputText styleClass="contact"
+											value="#{perguntaBean.pergunta.titulo}" id="titulo" />
+									</p>
+									<p>
+										<h:panelGroup>Descrição*</h:panelGroup>
+										<h:inputTextarea rows="8" cols="20" styleClass="contact"
+											value="#{perguntaBean.pergunta.descricao}" id="descricao" />
+									</p>
+									<p>
+										<h:panelGroup>Assuntos relacionados*</h:panelGroup>
+										<h:inputText styleClass="contact"
+											value="#{perguntaBean.pergunta.tag}" id="tag" />
+										<h:panelGroup
+											style="color: rgb(10, 122, 146); font-size: 12px;">
+										Separe as Tags por apenas um espaço em branco
+									</h:panelGroup>
+									</p>
+									<p style="color: red; font-size: 12px;">Os campos com * são
+										obrigatórios.</p>
+									<h:messages style="color: red" />
+									<h:commandButton styleClass="submit"
+										action="#{perguntaBean.alterarPergunta}" value="Salvar" />
+								</div>
+							</div>
+						</h:panelGroup>
+
+						<h:panelGroup id="panelMsgs" rendered="#{perguntaBean.perguntaAlterada }">
+							<div style="width: 700px;" class="form_settings_cadastro">
+								<h2 style="margin-left: 15px;">Pergunta alterada com sucesso!</h2>
+								<p style="margin-left: 15px;">
+									<h:commandButton styleClass="submit" value="Voltar" action="#{perguntaBean.irParaPagePergunta }">
+										<f:setPropertyActionListener value="#{perguntaBean.pergunta }"
+											target="#{respostaBean.pergunta }" />
+									</h:commandButton>
+								</p>
+							</div>
+						</h:panelGroup>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

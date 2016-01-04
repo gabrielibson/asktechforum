@@ -20,6 +20,7 @@ public class PerguntaBean {
 	private Fachada fachada = Fachada.getInstance();
 	private Pergunta pergunta;
 	private boolean perguntaCadastrada;
+	private boolean perguntaAlterada;
 	private List<ResultConsultarPergunta> listPerguntas;
 	private String tag;
 	
@@ -46,6 +47,25 @@ public class PerguntaBean {
 
 		return "cadastroPergunta";
 	}
+	
+	public String alterarPergunta(){
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		this.pergunta.setStrData(Util.getDataSistema());
+		this.pergunta.setStrHora(Util.getHoraSistema());
+		this.pergunta.setIdUsuario(usuario.getIdUsuario());
+		String retornoCadastroPergunta = this.fachada.fachadaAlterarPergunta(pergunta);
+
+		if (retornoCadastroPergunta != null
+				&& !retornoCadastroPergunta.equals("alteracaoSucesso")) {
+			this.perguntaAlterada = false;
+		} else {
+			this.perguntaAlterada = true;
+		}
+
+		return "alterarPergunta";
+	}
+
 	
 	public String consultarPerguntaPorTag(){
 		this.listPerguntas = this.fachada.fachadaConsultarPerguntaPorTag(this.tag);
@@ -77,8 +97,15 @@ public class PerguntaBean {
 		return "cadastroPergunta";
 	}
 	
+	public String irParaPagePergunta(){
+		this.limpar();
+		return "consultarRespostas";
+	}
+	
+	
 	public void limpar(){
 		this.perguntaCadastrada = false;
+		this.perguntaAlterada = false;
 		this.pergunta = new Pergunta();
 	}
 	
@@ -101,6 +128,14 @@ public class PerguntaBean {
 
 	public void setPerguntaCadastrada(boolean perguntaCadastrada) {
 		this.perguntaCadastrada = perguntaCadastrada;
+	}
+
+	public boolean isPerguntaAlterada() {
+		return perguntaAlterada;
+	}
+
+	public void setPerguntaAlterada(boolean perguntaAlterada) {
+		this.perguntaAlterada = perguntaAlterada;
 	}
 
 	public List<ResultConsultarPergunta> getListPerguntas() {

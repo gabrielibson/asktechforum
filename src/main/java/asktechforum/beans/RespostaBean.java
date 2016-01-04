@@ -26,6 +26,8 @@ public class RespostaBean {
 	private ArrayList<Resposta> listRespostas;
 	private HtmlDataTable dataTableListRespostas;
 	private Boolean sucessoCadastro;
+	private Boolean sucessoAlteracao;
+	private Boolean sucessoExlusaoResposta;
 	private String autor;
 	private String msgErro;
 	
@@ -34,6 +36,8 @@ public class RespostaBean {
 		this.fachada = Fachada.getInstance();
 		this.listRespostas = new ArrayList<Resposta>();
 		this.sucessoCadastro = false;
+		this.sucessoAlteracao = false;
+		this.sucessoExlusaoResposta = false;
 		this.msgErro = "";
 	}
 	
@@ -76,20 +80,54 @@ public class RespostaBean {
 		return "responderPerguntaPage";
 	}
 	
+	
+	public String alterarResposta(){
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().
+				getExternalContext().getSession(true);
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		this.resposta.setStrData(Util.getDataSistema());
+		this.resposta.setStrHora(Util.getHoraSistema());
+		this.resposta.setIdPergunta(this.pergunta.getIdPergunta());
+		this.resposta.setIdUsuario(usuarioLogado.getIdUsuario());
+		
+		String retorno = this.fachada.fachadaAlterarResposta(resposta);
+		
+		if (retorno != null
+				&& !retorno.equals("alteracaoSucesso")) {
+			this.msgErro = retorno;
+		} else {
+			this.sucessoAlteracao = true;
+		}
+		
+		return "alterarResposta";
+	}
+	
 	public String alterarPergunta(){
-		return "";
+		return "alterarPergunta";
 	}
 	
 	public String excluirPergunta(){
+		
 		return "";
 	}
 	
-	public String alterarResposta(){
-		return "";
+	public String alterarRespostaPage(){
+		return "alterarResposta";
+	}
+	
+	public String voltarConsultaRespostaPage(){
+		this.sucessoExlusaoResposta = false;
+		return this.consultarRepostasPergunta();
+	}
+	
+	public String consultarRespostaPage(){
+		return "consultarRespostas";
 	}
 	
 	public String excluirResposta(){
-		return "";
+		this.fachada.fachadaDeletarResposta(this.resposta.getIdResposta());	
+		this.sucessoExlusaoResposta = true;
+		return "consultarRespostas";
 	}
 	
 	public String getAutor() {
@@ -115,6 +153,8 @@ public class RespostaBean {
 	public void limpar(){
 		this.resposta = new Resposta();
 		this.sucessoCadastro = false;
+		this.sucessoAlteracao =  false;
+		this.sucessoExlusaoResposta = false;
 		this.msgErro = "";
 	}
 	
@@ -184,6 +224,22 @@ public class RespostaBean {
 
 	public void setDataTableListRespostas(HtmlDataTable dataTableListRespostas) {
 		this.dataTableListRespostas = dataTableListRespostas;
+	}
+
+	public Boolean getSucessoAlteracao() {
+		return sucessoAlteracao;
+	}
+
+	public void setSucessoAlteracao(Boolean sucessoAlteracao) {
+		this.sucessoAlteracao = sucessoAlteracao;
+	}
+
+	public Boolean getSucessoExlusaoResposta() {
+		return sucessoExlusaoResposta;
+	}
+
+	public void setSucessoExlusaoResposta(Boolean sucessoExlusaoResposta) {
+		this.sucessoExlusaoResposta = sucessoExlusaoResposta;
 	}
 	
 	

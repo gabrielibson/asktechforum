@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
       http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
-      version="2.0">
-    
-    <navigation-rule>
-    	<from-view-id>/*</from-view-id>
-    	<navigation-case>
-    		<from-outcome>loginPage</from-outcome>
-    		<to-view-id>/jsf/login.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    	<navigation-case>
-    		<from-outcome>indexPage</from-outcome>
-    		<to-view-id>index.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    	<navigation-case>
-    		<from-outcome>cadastroUsuarioPage</from-outcome>
-    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    	<navigation-case>
+	version="2.0">
+
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>loginPage</from-outcome>
+			<to-view-id>/jsf/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>indexPage</from-outcome>
+			<to-view-id>index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadastroUsuarioPage</from-outcome>
+			<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>passou</from-outcome>
 			<to-view-id>/jsf/admin/home.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>cadastroPergunta</from-outcome>
 			<to-view-id>/jsf/admin/cadastroPergunta.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>pesquisarUsuariosPage</from-outcome>
@@ -40,112 +40,151 @@
 			<from-outcome>perfilUsuarioPage</from-outcome>
 			<to-view-id>/jsf/admin/perfilUsuario.xhtml</to-view-id>
 		</navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-    	<from-view-id>/jsf/cadastroUsuario.xhtml</from-view-id>
-    	<navigation-case>
-    		<from-outcome>sucessoCadastro</from-outcome>
-    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    	<navigation-case>
-    		<from-outcome>erroCadastro</from-outcome>
-    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    	
-    	<navigation-case>
-    		<from-outcome>cadastroUsuarioPage</from-outcome>
-    		<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    </navigation-rule>    
-    <navigation-rule>
-    	<from-view-id>/jsf/esqueciMinhaSenha.xhtml</from-view-id>
-    	<navigation-case>
-    		<from-outcome>senhaEnviada</from-outcome>
-    		<to-view-id>/jsf/esqueciMinhaSenha.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    	<navigation-case>
-    		<from-outcome>emailNaoCadastrado</from-outcome>
-    		<to-view-id>/jsf/esqueciMinhaSenha.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-    	<from-view-id>/jsf/consultaPerguntasPorTag.xhtml</from-view-id>
-    	<navigation-case>
-    		<from-outcome>consultarRespostas</from-outcome>
-    		<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
-    		<redirect />
-    	</navigation-case>
-    	<navigation-case>
-    		<from-outcome>curtirDescurtirResposta</from-outcome>
-    		<to-view-id>/jsf/consultarRespostasPorPergunta</to-view-id>
-    		<redirect />
-    	</navigation-case>
-    </navigation-rule>
-	
-	 <navigation-rule>
-    	<from-view-id>/index.xhtml</from-view-id>
-    	<navigation-case>
-    		<from-outcome>consultarRespostas</from-outcome>
-    		<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
-    		<redirect />
-    	</navigation-case>
-    </navigation-rule>
-		
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/jsf/cadastroUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>sucessoCadastro</from-outcome>
+			<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>erroCadastro</from-outcome>
+			<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>cadastroUsuarioPage</from-outcome>
+			<to-view-id>/jsf/cadastroUsuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/jsf/esqueciMinhaSenha.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>senhaEnviada</from-outcome>
+			<to-view-id>/jsf/esqueciMinhaSenha.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>emailNaoCadastrado</from-outcome>
+			<to-view-id>/jsf/esqueciMinhaSenha.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/jsf/consultaPerguntasPorTag.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>consultarRespostas</from-outcome>
+			<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>curtirDescurtirResposta</from-outcome>
+			<to-view-id>/jsf/consultarRespostasPorPergunta</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>alterarPergunta</from-outcome>
+			<to-view-id>/jsf/admin/alterarPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>consultarRespostas</from-outcome>
+			<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
 	<navigation-rule>
 		<from-view-id>/jsf/admin/responderPergunta.xhtml</from-view-id>
 		<navigation-case>
-    		<from-outcome>responderPerguntaPage</from-outcome>
-    		<to-view-id>/jsf/admin/responderPergunta.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
-    	<navigation-case>
-    		<from-outcome>consultarRespostas</from-outcome>
-    		<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
+			<from-outcome>responderPerguntaPage</from-outcome>
+			<to-view-id>/jsf/admin/responderPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>consultarRespostas</from-outcome>
+			<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/jsf/consultarRespostasPorPergunta.xhtml</from-view-id>
 		<navigation-case>
-    		<from-outcome>responderPerguntaPage</from-outcome>
-    		<to-view-id>/jsf/admin/responderPergunta.xhtml</to-view-id>
-    		<redirect/>
-    	</navigation-case>
+			<from-outcome>responderPerguntaPage</from-outcome>
+			<to-view-id>/jsf/admin/responderPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/jsf/admin/pesquisarUsuario.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>pesquisarUsuariosPage</from-outcome>
 			<to-view-id>/jsf/admin/pesquisarUsuario.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>perfilUsuarioPage</from-outcome>
 			<to-view-id>/jsf/admin/perfilUsuario.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>/jsf/admin/perfilUsuario.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>alterarUsuarioPage</from-outcome>
 			<to-view-id>/jsf/admin/alterarUsuario.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>perfilUsuarioPage</from-outcome>
 			<to-view-id>/jsf/admin/perfilUsuario.xhtml</to-view-id>
-			<redirect/>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/jsf/consultarRespostasPorPergunta.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>alterarPergunta</from-outcome>
+			<to-view-id>/jsf/admin/alterarPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>alterarResposta</from-outcome>
+			<to-view-id>/jsf/admin/alterarResposta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/jsf/admin/alterarPergunta.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>consultarRespostas</from-outcome>
+			<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/jsf/admin/alterarResposta.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>consultarRespostas</from-outcome>
+			<to-view-id>/jsf/consultarRespostasPorPergunta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
 </faces-config>
