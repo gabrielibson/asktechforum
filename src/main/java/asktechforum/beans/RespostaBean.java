@@ -45,6 +45,7 @@ public class RespostaBean {
 	}
 	
 	public String consultarRepostasPergunta(){
+		this.sucessoExclusaoPergunta = false;
 		this.listRespostas = fachada.fachadaConsultarRespostaPorPergunta(pergunta.getIdPergunta());
 		for (Resposta resposta : listRespostas) {
 			this.tratarData(resposta);
@@ -113,8 +114,6 @@ public class RespostaBean {
 	public String excluirPergunta(){
 		this.fachada.fachadaDeletarPergunta(this.pergunta.getIdPergunta());
 		this.sucessoExclusaoPergunta = true;		
-		this.perguntaBean = new PerguntaBean();
-		perguntaBean.listarTodasPerguntas();
 		return "consultarRespostas";
 	}
 	
@@ -128,7 +127,10 @@ public class RespostaBean {
 	}
 	
 	public String consultarPerguntasPage(){
-		return "consultarPerguntas";
+		this.sucessoExclusaoPergunta = false;
+		this.perguntaBean = new PerguntaBean();
+		return perguntaBean.listarTodasPerguntas();
+		//return "consultarPerguntas";
 	}
 	
 	public String consultarRespostaPage(){
